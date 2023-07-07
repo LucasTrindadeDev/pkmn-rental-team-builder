@@ -1,6 +1,6 @@
-import TeamID from "../../molecules/TeamID";
-import TeamName from "../../molecules/TeamName";
-import TrainerInfo from "../../molecules/TrainerInfo";
+import TeamID from "../molecules/team-id";
+import TeamName from "../molecules/team-name";
+import TrainerInfo from "../molecules/trainer-info";
 
 export default function TeamHeader() {
   return (

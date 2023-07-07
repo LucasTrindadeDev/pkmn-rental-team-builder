@@ -1,4 +1,4 @@
-import PokemonBox from "../../molecules/PokemonBox";
+import PokemonBox from "../molecules/pokemon-box";
 
 export default function TeamPokemons() {
   return (

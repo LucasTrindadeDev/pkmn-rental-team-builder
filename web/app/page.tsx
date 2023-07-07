@@ -1,5 +1,5 @@
-import TeamHeader from "../components/organisms/TeamHeader";
-import TeamPokemons from "../components/organisms/TeamPokemons";
+import TeamHeader from "../components/organisms/team-header";
+import TeamPokemons from "../components/organisms/team-pokemons";
 
 export default function Home() {
   return (

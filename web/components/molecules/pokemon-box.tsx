@@ -3,10 +3,10 @@
 import { useState } from "react";
 import Image from "next/image";
 
-import { Pokemon } from "../../../utils/interfaces";
-import AddPokemon from "../../atoms/add-pokemon";
-import TextInput from "../../atoms/text-input";
-import PokemonTypes from "../../atoms/pokemon-types";
+import { Pokemon } from "../../utils/interfaces";
+import AddPokemon from "../atoms/add-pokemon";
+import TextInput from "../atoms/text-input";
+import PokemonTypes from "../atoms/pokemon-types";
 
 export default function PokemonBox() {
   const [pokemon, setPokemon] = useState<Pokemon | undefined>(undefined);

@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import NaranjaAcademyCrest from "../../../public/naranja-academy-chest.png";
+import NaranjaAcademyCrest from "../../public/naranja-academy-chest.png";
 
 export default function TrainerInfo() {
   return (

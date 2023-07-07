@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import TextInput from "../../atoms/text-input";
+import TextInput from "../atoms/text-input";
 
 export default function TeamName() {
   const [teamName, setTeamName] = useState("Team 1");
