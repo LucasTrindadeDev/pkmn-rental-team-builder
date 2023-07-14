@@ -3,23 +3,27 @@
 import { useState } from "react";
 import Image from "next/image";
 
-import { Pokemon } from "../../utils/interfaces";
+import { Pokemon, Item } from "../../utils/interfaces";
 import AddPokemon from "../atoms/add-pokemon";
 import TextInput from "../atoms/text-input";
 import PokemonTypes from "../atoms/pokemon-types";
+import AbilitySelect from "../atoms/ability-select";
+import AddItem from "../atoms/add-item";
+import { formatName } from "../../utils/functions";
 
 export default function PokemonBox() {
   const [pokemon, setPokemon] = useState<Pokemon | undefined>(undefined);
   const [level, setLevel] = useState<number>(1);
   // const [gender, setGender] = useState<string>("");
   // const [genderOptions, setGenderOptions] = useState<string>("");
-  // const [abilities, setAbilities] = useState<string[]>([]);
+  const [ability, setAbility] = useState<string | undefined>(undefined);
+  const [item, setItem] = useState<Item | undefined>(undefined);
 
   return (
     <div className="rounded-lg bg-pk-blue p-5 flex items-center justify-center text-pk-white">
       {pokemon ? (
         <div className="grid grid-cols-3 justify-between h-full flex-1">
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-4">
             <h3 className="text-xl font-semibold capitalize">
               {pokemon?.species}
             </h3>
@@ -33,6 +37,27 @@ export default function PokemonBox() {
                 setFunction={setLevel}
               />
             </label>
+
+            {pokemon.abilities && (
+              <AbilitySelect
+                abilities={pokemon.abilities}
+                setAbility={setAbility}
+              />
+            )}
+
+            {item ? (
+              <div className="flex items-center gap-1 ml-[-10px]">
+                <Image
+                  width={35}
+                  height={35}
+                  src={item.sprite}
+                  alt={item.name}
+                />
+                <h4 className="text-lg">{formatName(item.name)}</h4>
+              </div>
+            ) : (
+              <AddItem setItem={setItem} />
+            )}
           </div>
 
           <div className="flex flex-col items-center justify-between">
