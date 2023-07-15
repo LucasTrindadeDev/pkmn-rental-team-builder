@@ -2,14 +2,17 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { X } from "@phosphor-icons/react";
+import { PokemonMove } from "pokenode-ts";
 
-import { Pokemon, Item } from "../../utils/interfaces";
+import { Pokemon, Item, Move } from "../../utils/interfaces";
 import AddPokemon from "../atoms/add-pokemon";
 import TextInput from "../atoms/text-input";
 import PokemonTypes from "../atoms/pokemon-types";
 import AbilitySelect from "../atoms/ability-select";
 import AddItem from "../atoms/add-item";
 import { formatName } from "../../utils/functions";
+import AddMove from "../atoms/add-move";
 
 export default function PokemonBox() {
   const [pokemon, setPokemon] = useState<Pokemon | undefined>(undefined);
@@ -18,9 +21,24 @@ export default function PokemonBox() {
   // const [genderOptions, setGenderOptions] = useState<string>("");
   const [ability, setAbility] = useState<string | undefined>(undefined);
   const [item, setItem] = useState<Item | undefined>(undefined);
+  const [moves, setMoves] = useState<Move[]>([]);
+  const [learnableMoves, setLearnableMoves] = useState<
+    PokemonMove[] | undefined
+  >(undefined);
+
+  function removePokemon(): void {
+    setPokemon(undefined);
+    setItem(undefined);
+    setMoves([]);
+    setLearnableMoves(undefined);
+  }
+
+  function handleMoveSubmit(move: Move): void {
+    setMoves((moves) => [...moves, move]);
+  }
 
   return (
-    <div className="rounded-lg bg-pk-blue p-5 flex items-center justify-center text-pk-white">
+    <div className="rounded-lg bg-pk-blue p-5 flex items-center justify-center text-pk-white relative">
       {pokemon ? (
         <div className="grid grid-cols-3 justify-between h-full flex-1">
           <div className="flex flex-col gap-4">
@@ -46,7 +64,7 @@ export default function PokemonBox() {
             )}
 
             {item ? (
-              <div className="flex items-center gap-1 ml-[-10px]">
+              <div className="flex items-center gap-1 ml-[-10px] relative">
                 <Image
                   width={35}
                   height={35}
@@ -54,6 +72,13 @@ export default function PokemonBox() {
                   alt={item.name}
                 />
                 <h4 className="text-lg">{formatName(item.name)}</h4>
+
+                <X
+                  className="absolute top-0 left-0 cursor-pointer text-pk-white border-red-900 border-2 bg-red-500 rounded-full"
+                  size={16}
+                  onClick={() => setItem(undefined)}
+                  alt="Remove item"
+                />
               </div>
             ) : (
               <AddItem setItem={setItem} />
@@ -73,10 +98,38 @@ export default function PokemonBox() {
             />
           </div>
 
-          <div>a</div>
+          <div className="flex flex-col">
+            {[...Array(4)].map((x, i: number) =>
+              moves[i] ? (
+                <div>
+                  <Image
+                    width={20}
+                    height={20}
+                    className="object-contain"
+                    src={`/type-icons/${moves[i].type}.svg`}
+                    alt={moves[i].type}
+                    title={moves[i].type}
+                  />
+                  {moves[i].name}
+                </div>
+              ) : (
+                <AddMove setMove={(move: Move) => handleMoveSubmit(move)} />
+              )
+            )}
+          </div>
+
+          <X
+            className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 cursor-pointer text-pk-white border-red-900 border-2 bg-red-500 rounded-full"
+            size={24}
+            onClick={() => removePokemon()}
+            alt="Remove Pokémon"
+          />
         </div>
       ) : (
-        <AddPokemon setPokemon={setPokemon} />
+        <AddPokemon
+          setPokemon={setPokemon}
+          setLearnableMoves={setLearnableMoves}
+        />
       )}
     </div>
   );

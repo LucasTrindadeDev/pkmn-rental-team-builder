@@ -18,6 +18,11 @@ export interface Item {
   name: string;
 }
 
+export interface Move {
+  type: string;
+  name: string;
+}
+
 export type PokemonAbility = {
   name: string;
   is_hidden: boolean;

@@ -1,40 +1,36 @@
 "use client";
 
 import { useState, Dispatch, SetStateAction, FormEvent } from "react";
-import { ItemClient } from "pokenode-ts";
+import { MoveClient } from "pokenode-ts";
 
-import { Item } from "../../utils/interfaces";
+import { Move } from "../../utils/interfaces";
 
-export default function AddItem({
-  setItem,
-}: {
-  setItem: Dispatch<SetStateAction<Item | undefined>>;
-}) {
+export default function AddMove({ setMove }: { setMove: any }) {
   const [search, setSearch] = useState<string>("");
   const [isRequesting, setIsRequesting] = useState<boolean>(false);
 
-  function handleItemSubmit(e: FormEvent<HTMLFormElement>) {
+  function handleMoveSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     if (!isRequesting) {
-      searchItem(search);
+      searchMove(search);
       setIsRequesting(true);
     }
   }
 
-  function searchItem(name: string): void {
+  function searchMove(name: string): void {
     const query = name.toLowerCase().replace(" ", "-");
 
     (async () => {
-      const api = new ItemClient();
+      const api = new MoveClient();
 
       await api
-        .getItemByName(query)
+        .getMoveByName(query)
         .then((data) => {
           console.log(data);
 
-          setItem({
-            sprite: data.sprites.default,
+          setMove({
+            type: data.type.name,
             name: data.name,
           });
         })
@@ -46,12 +42,12 @@ export default function AddItem({
 
   return (
     <div className="flex flex-col h-full gap-2 items-center justify-center">
-      <form onSubmit={(e) => handleItemSubmit(e)}>
+      <form onSubmit={(e) => handleMoveSubmit(e)}>
         <input
           className="rounded px-2 py-1 border-pk-white border-2 border-solid w-full bg-transparent outline-none text-pk-white placeholder-pk-white"
-          name="item"
+          name="move"
           defaultValue=""
-          placeholder="Item name"
+          placeholder="Move name"
           onChange={(e) => setSearch(e.target.value)}
         />
       </form>

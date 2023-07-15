@@ -1,15 +1,17 @@
 "use client";
 
 import { useState, Dispatch, SetStateAction, useEffect } from "react";
-import { PokemonClient, PokemonEntry } from "pokenode-ts";
+import { PokemonClient, PokemonEntry, PokemonMove } from "pokenode-ts";
 
 import { Pokemon } from "../../utils/interfaces";
 import { useAppSelector } from "../../store/store";
 
 export default function AddPokemon({
   setPokemon,
+  setLearnableMoves,
 }: {
   setPokemon: Dispatch<SetStateAction<Pokemon | undefined>>;
+  setLearnableMoves: Dispatch<SetStateAction<PokemonMove[] | undefined>>;
 }) {
   const [search, setSearch] = useState<string>("");
   const [suggestPokemon, setSuggestPokemon] = useState<PokemonEntry[]>([]);
@@ -63,6 +65,7 @@ export default function AddPokemon({
           };
 
           setPokemon(pokemon);
+          setLearnableMoves(data.moves);
         })
         .catch((error) => console.error(error));
     })();
