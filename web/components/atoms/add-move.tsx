@@ -1,11 +1,15 @@
 "use client";
 
-import { useState, Dispatch, SetStateAction, FormEvent } from "react";
+import { useState, FormEvent } from "react";
 import { MoveClient } from "pokenode-ts";
 
-import { Move } from "../../utils/interfaces";
-
-export default function AddMove({ setMove }: { setMove: any }) {
+export default function AddMove({
+  setMove,
+  disabled,
+}: {
+  setMove: any;
+  disabled: boolean;
+}) {
   const [search, setSearch] = useState<string>("");
   const [isRequesting, setIsRequesting] = useState<boolean>(false);
 
@@ -41,14 +45,16 @@ export default function AddMove({ setMove }: { setMove: any }) {
   }
 
   return (
-    <div className="flex flex-col h-full gap-2 items-center justify-center">
+    <div className="flex flex-col items-center justify-center">
       <form onSubmit={(e) => handleMoveSubmit(e)}>
         <input
           className="rounded px-2 py-1 border-pk-white border-2 border-solid w-full bg-transparent outline-none text-pk-white placeholder-pk-white"
+          style={disabled ? { opacity: "0.5" } : undefined}
           name="move"
           defaultValue=""
           placeholder="Move name"
           onChange={(e) => setSearch(e.target.value)}
+          disabled={disabled}
         />
       </form>
 

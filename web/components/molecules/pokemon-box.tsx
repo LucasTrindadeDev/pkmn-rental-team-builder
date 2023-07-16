@@ -13,6 +13,7 @@ import AbilitySelect from "../atoms/ability-select";
 import AddItem from "../atoms/add-item";
 import { formatName } from "../../utils/functions";
 import AddMove from "../atoms/add-move";
+import SelectedMove from "../atoms/selected-move";
 
 export default function PokemonBox() {
   const [pokemon, setPokemon] = useState<Pokemon | undefined>(undefined);
@@ -31,6 +32,10 @@ export default function PokemonBox() {
     setItem(undefined);
     setMoves([]);
     setLearnableMoves(undefined);
+  }
+
+  function resetMoveSlot(name: string): void {
+    setMoves(moves.filter((move: Move) => move.name !== name));
   }
 
   function handleMoveSubmit(move: Move): void {
@@ -98,22 +103,20 @@ export default function PokemonBox() {
             />
           </div>
 
-          <div className="flex flex-col">
+          <div className="flex flex-col items-start justify-between">
             {[...Array(4)].map((x, i: number) =>
               moves[i] ? (
-                <div>
-                  <Image
-                    width={20}
-                    height={20}
-                    className="object-contain"
-                    src={`/type-icons/${moves[i].type}.svg`}
-                    alt={moves[i].type}
-                    title={moves[i].type}
-                  />
-                  {moves[i].name}
-                </div>
+                <SelectedMove
+                  move={moves[i]}
+                  key={`move-${i + 1}`}
+                  resetMoveSlot={resetMoveSlot}
+                />
               ) : (
-                <AddMove setMove={(move: Move) => handleMoveSubmit(move)} />
+                <AddMove
+                  setMove={(move: Move) => handleMoveSubmit(move)}
+                  key={`move-${i + 1}`}
+                  disabled={i > 0 && moves[i - 1] === undefined}
+                />
               )
             )}
           </div>
