@@ -6,7 +6,10 @@ export function formatName(name: string) {
       return name.charAt(0).toUpperCase() + name.slice(1);
     });
 
-    return names.toString().replace(",", " ");
+    if (name === "will-o-wisp" || name === "u-turn")
+      return names.toString().replaceAll(",", "-");
+
+    return names.toString().replaceAll(",", " ");
   } else {
     return name.charAt(0).toUpperCase() + name.slice(1);
   }

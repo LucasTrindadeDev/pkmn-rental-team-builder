@@ -18,6 +18,13 @@ export default function AbilitySelect({
     return ability.slot == 1;
   });
 
+  if (abilities.length === 1 || abilities[0].name === abilities[1].name)
+    return (
+      <h3 className="flex items-center placeholder:text-pk-white placeholder:font-normal text-white font-semibold capitalize">
+        {abilities[0].name}
+      </h3>
+    );
+
   return (
     <Select.Root
       defaultValue={defaultAbility[0].name}

@@ -17,6 +17,7 @@ export default function AddPokemon({
   const [suggestPokemon, setSuggestPokemon] = useState<PokemonEntry[]>([]);
 
   const pokedex = useAppSelector((state) => state.pokedex.pokedex);
+  const geniesPokemon = ["tornadus", "thundurus", "landorus", "enamorus"];
 
   useEffect(() => {
     if (search.length >= 2) suggestSearch();
@@ -83,16 +84,42 @@ export default function AddPokemon({
       />
 
       {suggestPokemon.length > 0 && (
-        <ul className="absolute bottom-1 translate-y-full rounded-b-md bg-pk-turquoise w-full pt-2 z-0 shadow-md">
-          {suggestPokemon.map((pokemon: PokemonEntry) => (
-            <li
-              key={pokemon.pokemon_species.name}
-              onClick={() => searchPokemon(pokemon.pokemon_species.name)}
-              className="capitalize px-2 py-1 border-t-2 border-t-pk-white first:border-t-0 cursor-pointer hover:text-pk-yellow transition-colors duration-100"
-            >
-              {pokemon.pokemon_species.name.replace("-", " ")}
-            </li>
-          ))}
+        <ul className="absolute bottom-1 translate-y-full rounded-b-md bg-pk-turquoise w-full pt-2 z-0 shadow-md text-sm">
+          {suggestPokemon.map((pokemon: PokemonEntry) =>
+            geniesPokemon.indexOf(pokemon.pokemon_species.name) >= 0 ? (
+              <>
+                <li
+                  key={`${pokemon.pokemon_species.name}-incarnate`}
+                  onClick={() =>
+                    searchPokemon(`${pokemon.pokemon_species.name}-incarnate`)
+                  }
+                  className="capitalize px-2 py-1 border-t-2 border-t-pk-white first:border-t-0 cursor-pointer hover:text-pk-yellow transition-colors duration-100"
+                >
+                  {`${pokemon.pokemon_species.name}-incarnate`.replace(
+                    "-",
+                    " "
+                  )}
+                </li>
+                <li
+                  key={`${pokemon.pokemon_species.name}-therian`}
+                  onClick={() =>
+                    searchPokemon(`${pokemon.pokemon_species.name}-therian`)
+                  }
+                  className="capitalize px-2 py-1 border-t-2 border-t-pk-white first:border-t-0 cursor-pointer hover:text-pk-yellow transition-colors duration-100"
+                >
+                  {`${pokemon.pokemon_species.name}-therian`.replace("-", " ")}
+                </li>
+              </>
+            ) : (
+              <li
+                key={pokemon.pokemon_species.name}
+                onClick={() => searchPokemon(pokemon.pokemon_species.name)}
+                className="capitalize px-2 py-1 border-t-2 border-t-pk-white first:border-t-0 cursor-pointer hover:text-pk-yellow transition-colors duration-100"
+              >
+                {pokemon.pokemon_species.name.replace("-", " ")}
+              </li>
+            )
+          )}
         </ul>
       )}
     </div>

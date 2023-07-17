@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { X } from "@phosphor-icons/react";
 import { PokemonMove } from "pokenode-ts";
@@ -116,6 +116,7 @@ export default function PokemonBox() {
                   setMove={(move: Move) => handleMoveSubmit(move)}
                   key={`move-${i + 1}`}
                   disabled={i > 0 && moves[i - 1] === undefined}
+                  learnableMoves={learnableMoves}
                 />
               )
             )}
