@@ -14,6 +14,7 @@ import AddItem from "../atoms/add-item";
 import { formatName } from "../../utils/functions";
 import AddMove from "../atoms/add-move";
 import SelectedMove from "../atoms/selected-move";
+import SelectedItem from "../atoms/selected-item";
 
 export default function PokemonBox() {
   const [pokemon, setPokemon] = useState<Pokemon | undefined>(undefined);
@@ -69,22 +70,7 @@ export default function PokemonBox() {
             )}
 
             {item ? (
-              <div className="flex items-center gap-1 ml-[-10px] relative">
-                <Image
-                  width={35}
-                  height={35}
-                  src={item.sprite}
-                  alt={item.name}
-                />
-                <h4 className="text-lg">{formatName(item.name)}</h4>
-
-                <X
-                  className="absolute top-0 left-0 cursor-pointer text-pk-white border-red-900 border-2 bg-red-500 rounded-full"
-                  size={16}
-                  onClick={() => setItem(undefined)}
-                  alt="Remove item"
-                />
-              </div>
+              <SelectedItem item={item} setItem={setItem} />
             ) : (
               <AddItem setItem={setItem} />
             )}

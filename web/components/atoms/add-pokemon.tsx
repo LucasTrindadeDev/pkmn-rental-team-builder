@@ -18,6 +18,13 @@ export default function AddPokemon({
 
   const pokedex = useAppSelector((state) => state.pokedex.pokedex);
   const geniesPokemon = ["tornadus", "thundurus", "landorus", "enamorus"];
+  const rotomForms = [
+    "rotom-heat",
+    "rotom-wash",
+    "rotom-frost",
+    "rotom-fan",
+    "rotom-mow",
+  ];
 
   useEffect(() => {
     if (search.length >= 2) suggestSearch();
@@ -75,7 +82,7 @@ export default function AddPokemon({
   return (
     <div className="relative">
       <input
-        className="rounded px-2 py-1 border-pk-white border-2 border-solid w-40 bg-pk-blue outline-none text-pk-white placeholder-pk-white relative z-10"
+        className="rounded px-2 py-1 border-pk-white border-2 border-solid w-40 bg-pk-blue outline-none text-pk-white placeholder-pk-white relative z-20"
         name="pokemon"
         defaultValue=""
         placeholder="Pokémon name"
@@ -84,33 +91,64 @@ export default function AddPokemon({
       />
 
       {suggestPokemon.length > 0 && (
-        <ul className="absolute bottom-1 translate-y-full rounded-b-md bg-pk-turquoise w-full pt-2 z-0 shadow-md text-sm">
-          {suggestPokemon.map((pokemon: PokemonEntry) =>
-            geniesPokemon.indexOf(pokemon.pokemon_species.name) >= 0 ? (
-              <>
-                <li
-                  key={`${pokemon.pokemon_species.name}-incarnate`}
-                  onClick={() =>
-                    searchPokemon(`${pokemon.pokemon_species.name}-incarnate`)
-                  }
-                  className="capitalize px-2 py-1 border-t-2 border-t-pk-white first:border-t-0 cursor-pointer hover:text-pk-yellow transition-colors duration-100"
-                >
-                  {`${pokemon.pokemon_species.name}-incarnate`.replace(
-                    "-",
-                    " "
-                  )}
-                </li>
-                <li
-                  key={`${pokemon.pokemon_species.name}-therian`}
-                  onClick={() =>
-                    searchPokemon(`${pokemon.pokemon_species.name}-therian`)
-                  }
-                  className="capitalize px-2 py-1 border-t-2 border-t-pk-white first:border-t-0 cursor-pointer hover:text-pk-yellow transition-colors duration-100"
-                >
-                  {`${pokemon.pokemon_species.name}-therian`.replace("-", " ")}
-                </li>
-              </>
-            ) : (
+        <ul className="absolute bottom-1 translate-y-full rounded-b-md bg-pk-turquoise w-full pt-2 z-10 shadow-md text-sm">
+          {suggestPokemon.map((pokemon: PokemonEntry) => {
+            if (geniesPokemon.indexOf(pokemon.pokemon_species.name) >= 0) {
+              return (
+                <>
+                  <li
+                    key={`${pokemon.pokemon_species.name}-incarnate`}
+                    onClick={() =>
+                      searchPokemon(`${pokemon.pokemon_species.name}-incarnate`)
+                    }
+                    className="capitalize px-2 py-1 border-t-2 border-t-pk-white first:border-t-0 cursor-pointer hover:text-pk-yellow transition-colors duration-100"
+                  >
+                    {`${pokemon.pokemon_species.name}-incarnate`.replace(
+                      "-",
+                      " "
+                    )}
+                  </li>
+                  <li
+                    key={`${pokemon.pokemon_species.name}-therian`}
+                    onClick={() =>
+                      searchPokemon(`${pokemon.pokemon_species.name}-therian`)
+                    }
+                    className="capitalize px-2 py-1 border-t-2 border-t-pk-white first:border-t-0 cursor-pointer hover:text-pk-yellow transition-colors duration-100"
+                  >
+                    {`${pokemon.pokemon_species.name}-therian`.replace(
+                      "-",
+                      " "
+                    )}
+                  </li>
+                </>
+              );
+            }
+
+            if (pokemon.pokemon_species.name === "rotom") {
+              return (
+                <>
+                  {rotomForms.map((form: string) => (
+                    <li
+                      key={form}
+                      onClick={() => searchPokemon(form)}
+                      className="capitalize px-2 py-1 border-t-2 border-t-pk-white first:border-t-0 cursor-pointer hover:text-pk-yellow transition-colors duration-100"
+                    >
+                      {form.replace("-", " ")}
+                    </li>
+                  ))}
+
+                  <li
+                    key={pokemon.pokemon_species.name}
+                    onClick={() => searchPokemon(pokemon.pokemon_species.name)}
+                    className="capitalize px-2 py-1 border-t-2 border-t-pk-white first:border-t-0 cursor-pointer hover:text-pk-yellow transition-colors duration-100"
+                  >
+                    {pokemon.pokemon_species.name.replace("-", " ")}
+                  </li>
+                </>
+              );
+            }
+
+            return (
               <li
                 key={pokemon.pokemon_species.name}
                 onClick={() => searchPokemon(pokemon.pokemon_species.name)}
@@ -118,8 +156,8 @@ export default function AddPokemon({
               >
                 {pokemon.pokemon_species.name.replace("-", " ")}
               </li>
-            )
-          )}
+            );
+          })}
         </ul>
       )}
     </div>

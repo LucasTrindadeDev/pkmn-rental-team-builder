@@ -13,9 +13,9 @@ export default function SelectedMove({
   resetMoveSlot: (name: string) => void;
 }) {
   return (
-    <div className="flex gap-2 items-center relative pr-1">
+    <div className="flex items-center relative w-full h-8">
       <div
-        className="w-7 h-7 rounded-full transition-all duration-200 flex items-center justify-center hover:saturate-200 hover:scale-110"
+        className="absolute z-10 left-0 top-0 w-8 h-8 rounded-full transition-all duration-200 flex items-center justify-center hover:saturate-200 hover:scale-110"
         style={{
           backgroundColor: typesColors[move.type as keyof typeof typesColors],
           boxShadow: `0 0 8px ${
@@ -32,14 +32,17 @@ export default function SelectedMove({
           title={move.type}
         />
       </div>
-      {formatName(move.name)}
 
-      <X
-        className="absolute top-0 right-0 cursor-pointer text-pk-white border-red-900 border-2 bg-red-500 rounded-full translate-x-1/2 -translate-y-1/2"
-        size={16}
-        onClick={() => resetMoveSlot(move.name)}
-        alt="Remove item"
-      />
+      <div className="pl-9 pr-2 bg-pk-turquoise rounded-xl w-full flex items-center justify-between">
+        {formatName(move.name)}
+
+        <X
+          className="cursor-pointer text-pk-white border-red-900 border-2 bg-red-500 rounded-full"
+          size={16}
+          onClick={() => resetMoveSlot(move.name)}
+          alt="Remove item"
+        />
+      </div>
     </div>
   );
 }
