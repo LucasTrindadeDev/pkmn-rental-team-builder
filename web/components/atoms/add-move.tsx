@@ -72,7 +72,7 @@ export default function AddMove({
   }
 
   return (
-    <div className="flex flex-col items-center justify-center relative z-10">
+    <div className="flex flex-col items-center justify-center relative">
       <form onSubmit={(e) => handleMoveSubmit(e)}>
         <input
           className="rounded px-2 py-1 border-pk-white border-2 border-solid w-full bg-pk-blue outline-none text-pk-white placeholder-pk-white"

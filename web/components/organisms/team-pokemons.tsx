@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect } from "react";
-import { GameClient } from "pokenode-ts";
+import { GameClient, ItemClient } from "pokenode-ts";
 
 import PokemonBox from "../molecules/pokemon-box";
 import { useAppDispatch } from "../../store/store";
 import { setPokedex } from "../../store/features/pokedexSlice";
+import { setBattleItems } from "../../store/features/battleItemsSlice";
 
 export default function TeamPokemons() {
   const dispatch = useAppDispatch();
@@ -18,6 +19,127 @@ export default function TeamPokemons() {
         .getPokedexByName("national")
         .then((data) => {
           dispatch(setPokedex({ pokedex: data.pokemon_entries }));
+        })
+        .catch((error) => console.error(error));
+    })();
+
+    (async () => {
+      const api = new ItemClient();
+
+      await api
+        .getItemCategoryByName("held-items")
+        .then((data) => {
+          dispatch(setBattleItems({ battleItems: [...data.items] }));
+        })
+        .catch((error) => console.error(error));
+    })();
+
+    (async () => {
+      const api = new ItemClient();
+
+      await api
+        .getItemCategoryByName("bad-held-items")
+        .then((data) => {
+          dispatch(setBattleItems({ battleItems: [...data.items] }));
+        })
+        .catch((error) => console.error(error));
+    })();
+
+    (async () => {
+      const api = new ItemClient();
+
+      await api
+        .getItemCategoryByName("medicine")
+        .then((data) => {
+          dispatch(setBattleItems({ battleItems: [...data.items] }));
+        })
+        .catch((error) => console.error(error));
+    })();
+
+    (async () => {
+      const api = new ItemClient();
+
+      await api
+        .getItemCategoryByName("other")
+        .then((data) => {
+          dispatch(setBattleItems({ battleItems: [...data.items] }));
+        })
+        .catch((error) => console.error(error));
+    })();
+
+    (async () => {
+      const api = new ItemClient();
+
+      await api
+        .getItemCategoryByName("in-a-pinch")
+        .then((data) => {
+          dispatch(setBattleItems({ battleItems: [...data.items] }));
+        })
+        .catch((error) => console.error(error));
+    })();
+
+    (async () => {
+      const api = new ItemClient();
+
+      await api
+        .getItemCategoryByName("picky-healing")
+        .then((data) => {
+          dispatch(setBattleItems({ battleItems: [...data.items] }));
+        })
+        .catch((error) => console.error(error));
+    })();
+
+    (async () => {
+      const api = new ItemClient();
+
+      await api
+        .getItemCategoryByName("type-protection")
+        .then((data) => {
+          dispatch(setBattleItems({ battleItems: [...data.items] }));
+        })
+        .catch((error) => console.error(error));
+    })();
+
+    (async () => {
+      const api = new ItemClient();
+
+      await api
+        .getItemCategoryByName("choice")
+        .then((data) => {
+          dispatch(setBattleItems({ battleItems: [...data.items] }));
+        })
+        .catch((error) => console.error(error));
+    })();
+
+    (async () => {
+      const api = new ItemClient();
+
+      await api
+        .getItemCategoryByName("plates")
+        .then((data) => {
+          dispatch(setBattleItems({ battleItems: [...data.items] }));
+        })
+        .catch((error) => console.error(error));
+    })();
+
+    (async () => {
+      const api = new ItemClient();
+
+      await api
+        .getItemCategoryByName("type-enhancement")
+        .then((data) => {
+          dispatch(setBattleItems({ battleItems: [...data.items] }));
+        })
+        .catch((error) => console.error(error));
+    })();
+
+    (async () => {
+      const api = new ItemClient();
+
+      await api
+        .getItemCategoryByName("held-items")
+        .then((data) => {
+          dispatch(setBattleItems({ battleItems: [...data.items] }));
         })
         .catch((error) => console.error(error));
     })();

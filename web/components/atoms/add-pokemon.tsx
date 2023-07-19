@@ -25,6 +25,7 @@ export default function AddPokemon({
     "rotom-fan",
     "rotom-mow",
   ];
+  const urshifu = ["urshifu-single-strike", "urshifu-rapid-strike"];
 
   useEffect(() => {
     if (search.length >= 2) suggestSearch();
@@ -144,6 +145,22 @@ export default function AddPokemon({
                   >
                     {pokemon.pokemon_species.name.replace("-", " ")}
                   </li>
+                </>
+              );
+            }
+
+            if (pokemon.pokemon_species.name === "urshifu") {
+              return (
+                <>
+                  {urshifu.map((style: string) => (
+                    <li
+                      key={style}
+                      onClick={() => searchPokemon(style)}
+                      className="capitalize px-2 py-1 border-t-2 border-t-pk-white first:border-t-0 cursor-pointer hover:text-pk-yellow transition-colors duration-100"
+                    >
+                      {`${style.replaceAll("-", " ")} Style`}
+                    </li>
+                  ))}
                 </>
               );
             }
