@@ -6,11 +6,6 @@ export interface Pokemon {
   types: string[];
   level: number;
   abilities: PokemonAbility[];
-  // gender: string;
-  // genderOptions: {
-  //   female: string;
-  //   male: string;
-  // };
 }
 
 export interface Item {

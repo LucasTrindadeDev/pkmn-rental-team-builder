@@ -19,10 +19,9 @@ import SelectedItem from "../atoms/selected-item";
 export default function PokemonBox() {
   const [pokemon, setPokemon] = useState<Pokemon | undefined>(undefined);
   const [level, setLevel] = useState<number>(1);
-  // const [gender, setGender] = useState<string>("");
-  // const [genderOptions, setGenderOptions] = useState<string>("");
-  const [ability, setAbility] = useState<string | undefined>(undefined);
+  const [ability, setAbility] = useState<string | undefined>();
   const [item, setItem] = useState<Item | undefined>(undefined);
+  const [teratype, setTeratype] = useState<string>("");
   const [moves, setMoves] = useState<Move[]>([]);
   const [learnableMoves, setLearnableMoves] = useState<
     PokemonMove[] | undefined
@@ -77,7 +76,11 @@ export default function PokemonBox() {
           </div>
 
           <div className="flex flex-col items-center justify-between">
-            <PokemonTypes types={pokemon.types} />
+            <PokemonTypes
+              types={pokemon.types}
+              teratype={teratype ? teratype : pokemon.types[0]}
+              setTeraType={setTeratype}
+            />
 
             <Image
               width={130}

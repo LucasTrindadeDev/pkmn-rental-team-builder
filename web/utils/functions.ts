@@ -14,3 +14,7 @@ export function formatName(name: string) {
     return name.charAt(0).toUpperCase() + name.slice(1);
   }
 }
+
+export function capitalizeFirstChar(str: string) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
