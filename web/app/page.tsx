@@ -5,18 +5,21 @@ import { Provider } from "react-redux";
 
 import TeamHeader from "../components/organisms/team-header";
 import TeamPokemons from "../components/organisms/team-pokemons";
-import { getPokedex } from "../utils/api";
+import { getPokedex, getItems } from "../utils/api";
 
 export default async function Home() {
   const pokedexData = getPokedex();
   const [pokedex] = await Promise.all([pokedexData]);
+
+  const itemsData = getItems();
+  const [battleItems] = await Promise.all([itemsData]);
 
   return (
     <Provider store={store}>
       <main className="h-screen flex flex-col bg-pk-turquoise p-10">
         <TeamHeader />
 
-        <TeamPokemons dex={pokedex} />
+        <TeamPokemons dex={pokedex} battleItems={battleItems} />
       </main>
     </Provider>
   );
