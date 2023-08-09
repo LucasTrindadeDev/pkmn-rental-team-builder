@@ -18,7 +18,7 @@ export const variants = {
     ninetales: "ninetales-alola",
     diglett: "diglett-alola",
     dugtrio: "dugtrio-alolla",
-    // meowth: ["meowth-alola", "meowth-galar"],
+    meowth: "meowth-alola/meowth-galar",
     persian: "persian-alola",
     growlithe: "growlithe-hisui",
     arcanine: "arcanine-hisui",
@@ -61,8 +61,15 @@ export const variants = {
     goodra: "goodra-hisui",
     avalugg: "avalugg-hisui",
     decidueye: "decidueye-hisui",
+    tauros:
+      "tauros-paldea-combat-breed/tauros-paldea-blaze-breed/tauros-paldea-aqua-breed",
+    basculin:
+      "basculin-red-striped/basculin-blue-striped/basculin-white-striped",
   },
-  taurosPaldea: ["combat-breed", "blaze-breed", "aqua-breed"],
-  basculin: ["red-striped", "blue-striped", "white-striped"],
-  darmanitan: ["standard", "standard-galar", "zen", "zen-galar"],
+  darmanitan: [
+    "darmanitan-standard",
+    "darmanitan-zen",
+    "darmanitan-galar-standard",
+    "darmanitan-galar-zen",
+  ],
 };

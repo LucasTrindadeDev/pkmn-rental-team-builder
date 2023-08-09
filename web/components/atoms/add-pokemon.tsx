@@ -6,6 +6,11 @@ import { PokemonClient, PokemonEntry, PokemonMove } from "pokenode-ts";
 import { Pokemon } from "../../utils/interfaces";
 import { variants } from "../../utils/pokemon-variants";
 import { useAppSelector } from "../../store/store";
+import Urshifu from "./pokemon-variants/urshifu";
+import Rotom from "./pokemon-variants/rotom";
+import Genies from "./pokemon-variants/genies";
+import RegionalForms from "./pokemon-variants/regional-forms";
+import Darmanitan from "./pokemon-variants/darmanitan";
 
 export default function AddPokemon({
   setPokemon,
@@ -90,74 +95,28 @@ export default function AddPokemon({
               variants.geniesPokemon.indexOf(pokemon.pokemon_species.name) >= 0
             ) {
               return (
-                <>
-                  <li
-                    key={`${pokemon.pokemon_species.name}-incarnate`}
-                    onClick={() =>
-                      searchPokemon(`${pokemon.pokemon_species.name}-incarnate`)
-                    }
-                    className="capitalize px-2 py-1 border-t-2 border-t-pk-white first:border-t-0 cursor-pointer hover:text-pk-yellow transition-colors duration-100"
-                  >
-                    {`${pokemon.pokemon_species.name}-incarnate`.replace(
-                      "-",
-                      " "
-                    )}
-                  </li>
-
-                  <li
-                    key={`${pokemon.pokemon_species.name}-therian`}
-                    onClick={() =>
-                      searchPokemon(`${pokemon.pokemon_species.name}-therian`)
-                    }
-                    className="capitalize px-2 py-1 border-t-2 border-t-pk-white first:border-t-0 cursor-pointer hover:text-pk-yellow transition-colors duration-100"
-                  >
-                    {`${pokemon.pokemon_species.name}-therian`.replace(
-                      "-",
-                      " "
-                    )}
-                  </li>
-                </>
+                <Genies
+                  pokemon={pokemon.pokemon_species.name}
+                  searchPokemon={searchPokemon}
+                />
               );
             }
 
             if (pokemon.pokemon_species.name === "rotom") {
               return (
-                <>
-                  {variants.rotomForms.map((form: string) => (
-                    <li
-                      key={form}
-                      onClick={() => searchPokemon(form)}
-                      className="capitalize px-2 py-1 border-t-2 border-t-pk-white first:border-t-0 cursor-pointer hover:text-pk-yellow transition-colors duration-100"
-                    >
-                      {form.replace("-", " ")}
-                    </li>
-                  ))}
-
-                  <li
-                    key={pokemon.pokemon_species.name}
-                    onClick={() => searchPokemon(pokemon.pokemon_species.name)}
-                    className="capitalize px-2 py-1 border-t-2 border-t-pk-white first:border-t-0 cursor-pointer hover:text-pk-yellow transition-colors duration-100"
-                  >
-                    {pokemon.pokemon_species.name.replace("-", " ")}
-                  </li>
-                </>
+                <Rotom
+                  pokemon={pokemon.pokemon_species.name}
+                  searchPokemon={searchPokemon}
+                />
               );
             }
 
             if (pokemon.pokemon_species.name === "urshifu") {
-              return (
-                <>
-                  {variants.urshifu.map((style: string) => (
-                    <li
-                      key={style}
-                      onClick={() => searchPokemon(style)}
-                      className="capitalize px-2 py-1 border-t-2 border-t-pk-white first:border-t-0 cursor-pointer hover:text-pk-yellow transition-colors duration-100"
-                    >
-                      {`${style.replaceAll("-", " ")} Style`}
-                    </li>
-                  ))}
-                </>
-              );
+              return <Urshifu searchPokemon={searchPokemon} />;
+            }
+
+            if (pokemon.pokemon_species.name === "darmanitan") {
+              return <Darmanitan searchPokemon={searchPokemon} />;
             }
 
             if (
@@ -167,38 +126,10 @@ export default function AddPokemon({
               ]
             ) {
               return (
-                <>
-                  <li
-                    key={
-                      variants.regionalForms[
-                        pokemon.pokemon_species
-                          .name as keyof typeof variants.regionalForms
-                      ]
-                    }
-                    onClick={() =>
-                      searchPokemon(
-                        variants.regionalForms[
-                          pokemon.pokemon_species
-                            .name as keyof typeof variants.regionalForms
-                        ]
-                      )
-                    }
-                    className="capitalize px-2 py-1 border-t-2 border-t-pk-white first:border-t-0 cursor-pointer hover:text-pk-yellow transition-colors duration-100"
-                  >
-                    {variants.regionalForms[
-                      pokemon.pokemon_species
-                        .name as keyof typeof variants.regionalForms
-                    ].replace("-", " ")}
-                  </li>
-
-                  <li
-                    key={pokemon.pokemon_species.name}
-                    onClick={() => searchPokemon(pokemon.pokemon_species.name)}
-                    className="capitalize px-2 py-1 border-t-2 border-t-pk-white first:border-t-0 cursor-pointer hover:text-pk-yellow transition-colors duration-100"
-                  >
-                    {pokemon.pokemon_species.name.replace("-", " ")}
-                  </li>
-                </>
+                <RegionalForms
+                  pokemon={pokemon.pokemon_species.name}
+                  searchPokemon={searchPokemon}
+                />
               );
             }
 

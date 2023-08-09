@@ -75,7 +75,7 @@ export default function PokemonBox() {
             )}
           </div>
 
-          <div className="flex flex-col items-center justify-between">
+          <div className="flex flex-col items-center justify-between gap-2">
             <PokemonTypes
               types={pokemon.types}
               teratype={teratype ? teratype : pokemon.types[0]}
