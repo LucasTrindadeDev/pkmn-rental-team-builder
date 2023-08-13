@@ -63,9 +63,12 @@ export const variants = {
     decidueye: "decidueye-hisui",
     tauros:
       "tauros-paldea-combat-breed/tauros-paldea-blaze-breed/tauros-paldea-aqua-breed",
-    basculin:
-      "basculin-red-striped/basculin-blue-striped/basculin-white-striped",
   },
+  basculin: [
+    "basculin-red-striped",
+    "basculin-blue-striped",
+    "basculin-white-striped",
+  ],
   darmanitan: [
     "darmanitan-standard",
     "darmanitan-zen",

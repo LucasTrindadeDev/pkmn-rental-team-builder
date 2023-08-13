@@ -11,6 +11,7 @@ import Rotom from "./pokemon-variants/rotom";
 import Genies from "./pokemon-variants/genies";
 import RegionalForms from "./pokemon-variants/regional-forms";
 import Darmanitan from "./pokemon-variants/darmanitan";
+import Basculin from "./pokemon-variants/basculin";
 
 export default function AddPokemon({
   setPokemon,
@@ -49,31 +50,59 @@ export default function AddPokemon({
     (async () => {
       const api = new PokemonClient();
 
-      await api
-        .getPokemonByName(name)
-        .then((data) => {
-          console.log(data);
+      if (name === "basculegion") {
+        await api
+          .getPokemonById(902)
+          .then((data) => {
+            console.log(data);
 
-          const pokemon = {
-            species: data.species.name.replace("-", " "),
-            sprite: data.sprites.front_default,
-            level: 50,
-            types: data.types.map((type) => {
-              return type.type.name;
-            }),
-            abilities: data.abilities.map((ability) => {
-              return {
-                name: ability.ability.name,
-                is_hidden: ability.is_hidden,
-                slot: ability.slot,
-              };
-            }),
-          };
+            const pokemon = {
+              species: data.species.name.replace("-", " "),
+              sprite: data.sprites.front_default,
+              level: 50,
+              types: data.types.map((type) => {
+                return type.type.name;
+              }),
+              abilities: data.abilities.map((ability) => {
+                return {
+                  name: ability.ability.name,
+                  is_hidden: ability.is_hidden,
+                  slot: ability.slot,
+                };
+              }),
+            };
 
-          setPokemon(pokemon);
-          setLearnableMoves(data.moves);
-        })
-        .catch((error) => console.error(error));
+            setPokemon(pokemon);
+            setLearnableMoves(data.moves);
+          })
+          .catch((error) => console.error(error));
+      } else {
+        await api
+          .getPokemonByName(name)
+          .then((data) => {
+            console.log(data);
+
+            const pokemon = {
+              species: data.species.name.replace("-", " "),
+              sprite: data.sprites.front_default,
+              level: 50,
+              types: data.types.map((type) => {
+                return type.type.name;
+              }),
+              abilities: data.abilities.map((ability) => {
+                return {
+                  name: ability.ability.name,
+                  is_hidden: ability.is_hidden,
+                  slot: ability.slot,
+                };
+              }),
+            };
+
+            setPokemon(pokemon);
+            setLearnableMoves(data.moves);
+          })
+          .catch((error) => console.error(error));
+      }
     })();
   }
 
@@ -117,6 +146,10 @@ export default function AddPokemon({
 
             if (pokemon.pokemon_species.name === "darmanitan") {
               return <Darmanitan searchPokemon={searchPokemon} />;
+            }
+
+            if (pokemon.pokemon_species.name === "basculin") {
+              return <Basculin searchPokemon={searchPokemon} />;
             }
 
             if (
