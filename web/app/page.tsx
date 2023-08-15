@@ -8,16 +8,23 @@ import { setBattleItems } from "../store/features/battleItemsSlice";
 
 import TeamHeader from "../components/organisms/team-header";
 import TeamPokemons from "../components/organisms/team-pokemons";
+import { useEffect } from "react";
 
-export default async function Home() {
-  const pokedexData = await fetch("http://localhost:3000/api/pokedex");
-  const pokedex = await pokedexData.json();
+export default function Home() {
+  useEffect(() => {
+    const fetchData = async () => {
+      const pokedexData = await fetch("http://localhost:3000/api/pokedex");
+      const pokedex = await pokedexData.json();
 
-  const itemsData = await fetch("http://localhost:3000/api/battle-items");
-  const battleItems = await itemsData.json();
+      const itemsData = await fetch("http://localhost:3000/api/battle-items");
+      const battleItems = await itemsData.json();
 
-  store.dispatch(setPokedex({ pokedex: pokedex }));
-  store.dispatch(setBattleItems({ battleItems: battleItems }));
+      store.dispatch(setPokedex({ pokedex: pokedex }));
+      store.dispatch(setBattleItems({ battleItems: battleItems }));
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <Provider store={store}>
