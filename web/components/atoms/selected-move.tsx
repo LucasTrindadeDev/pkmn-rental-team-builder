@@ -2,7 +2,7 @@ import Image from "next/image";
 import { X } from "@phosphor-icons/react";
 
 import { typesColors } from "../../utils/types-colors";
-import { Move } from "../../utils/interfaces";
+import { Move } from "../../types";
 import { formatName } from "../../utils/functions";
 
 export default function SelectedMove({

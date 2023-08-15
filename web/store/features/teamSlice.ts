@@ -1,15 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Pokemon } from "../../utils/interfaces";
-
-export interface Team {
-  id: string;
-  name: string;
-  pokemon: Pokemon[];
-  trainer: {
-    name: string;
-    game: string;
-  };
-}
+import { Pokemon, Team } from "../../types";
 
 interface TeamSlice {
   team: Team;
@@ -42,6 +32,9 @@ export const TeamSlice = createSlice({
     },
     setTrainerGame: (state, action: PayloadAction<{ game: string }>) => {
       state.team.trainer.game = action.payload.game;
+    },
+    setTeamPokemon: (state, action: PayloadAction<{ pokemon: Pokemon[] }>) => {
+      state.team.pokemon = action.payload.pokemon;
     },
   },
 });

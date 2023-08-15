@@ -8,9 +8,24 @@ export interface Pokemon {
   abilities: PokemonAbility[];
 }
 
-export interface Item {
+export interface Team {
+  id: string;
+  name: string;
+  pokemon: Pokemon[];
+  trainer: {
+    name: string;
+    game: string;
+  };
+}
+
+export interface BattleItem {
   sprite: string | null | StaticImport;
   name: string;
+}
+
+export interface Item {
+  name: string;
+  url: string;
 }
 
 export interface Move {

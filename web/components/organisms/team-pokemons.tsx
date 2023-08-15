@@ -1,22 +1,6 @@
 import PokemonBox from "../molecules/pokemon-box";
-import { useAppDispatch, useAppSelector } from "../../store/store";
-import { setPokedex } from "../../store/features/pokedexSlice";
-import { Item, setBattleItems } from "../../store/features/battleItemsSlice";
-import { PokemonEntry } from "pokenode-ts";
 
-export default async function TeamPokemons({
-  dex,
-  battleItems,
-}: {
-  dex: PokemonEntry[];
-  battleItems: Item[];
-}) {
-  const dispatch = useAppDispatch();
-
-  dispatch(setPokedex({ pokedex: dex }));
-
-  dispatch(setBattleItems({ battleItems: battleItems }));
-
+export default function TeamPokemons() {
   return (
     <>
       <div className="grow mt-10 grid grid-cols-2 grid-rows-3 gap-10">

@@ -9,14 +9,14 @@ import {
 } from "react";
 import { ItemClient } from "pokenode-ts";
 
-import { Item } from "../../utils/interfaces";
+import { BattleItem } from "../../types";
 import { useAppSelector } from "../../store/store";
 import { formatName } from "../../utils/functions";
 
 export default function AddItem({
   setItem,
 }: {
-  setItem: Dispatch<SetStateAction<Item | undefined>>;
+  setItem: Dispatch<SetStateAction<BattleItem | undefined>>;
 }) {
   const [search, setSearch] = useState<string>("");
   const [isRequesting, setIsRequesting] = useState<boolean>(false);
@@ -91,7 +91,7 @@ export default function AddItem({
 
       {suggestItems && suggestItems.length > 0 && (
         <ul className="absolute bottom-1 translate-y-full rounded-b-md bg-pk-turquoise w-full pt-2 z-10 shadow-md">
-          {suggestItems.map((item: Item) => (
+          {suggestItems.map((item: BattleItem) => (
             <li
               key={item.name}
               onClick={() => searchItem(item.name)}

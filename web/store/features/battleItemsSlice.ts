@@ -1,9 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-export interface Item {
-  name: string;
-  url: string;
-}
+import { Item } from "../../types";
 
 interface BattleItemsState {
   battleItems: Item[];

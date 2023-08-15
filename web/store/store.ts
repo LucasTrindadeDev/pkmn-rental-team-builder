@@ -11,6 +11,10 @@ export const store = configureStore({
     battleItems: BattleItemsSlice.reducer,
     team: TeamSlice.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export const useAppDispatch: () => typeof store.dispatch = useDispatch;

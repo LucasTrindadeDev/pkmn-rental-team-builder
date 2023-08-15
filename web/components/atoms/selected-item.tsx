@@ -2,15 +2,15 @@ import { SetStateAction } from "react";
 import Image from "next/image";
 import { X } from "@phosphor-icons/react";
 
-import { Item } from "../../utils/interfaces";
+import { BattleItem } from "../../types";
 import { formatName } from "../../utils/functions";
 
 export default function SelectedItem({
   item,
   setItem,
 }: {
-  item: Item;
-  setItem: (value: SetStateAction<Item | undefined>) => void;
+  item: BattleItem;
+  setItem: (value: SetStateAction<BattleItem | undefined>) => void;
 }) {
   return (
     <div className="flex items-center gap-1 ml-[-10px] relative w-full h-10">

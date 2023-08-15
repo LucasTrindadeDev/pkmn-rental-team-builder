@@ -3,7 +3,7 @@
 import { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { PokemonClient, PokemonEntry, PokemonMove } from "pokenode-ts";
 
-import { Pokemon } from "../../utils/interfaces";
+import { Pokemon } from "../../types";
 import { variants } from "../../utils/pokemon-variants";
 import { useAppSelector } from "../../store/store";
 import Urshifu from "./pokemon-variants/urshifu";

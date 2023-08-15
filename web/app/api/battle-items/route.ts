@@ -1,12 +1,8 @@
-import { GameClient, ItemClient } from "pokenode-ts";
+import { NextResponse } from "next/server";
 
-export async function getPokedex() {
-  const api = new GameClient();
-  const res = await api.getPokedexByName("national");
-  return res.pokemon_entries;
-}
+import { ItemClient } from "pokenode-ts";
 
-export async function getItems() {
+export async function GET(req: Request) {
   const api = new ItemClient();
 
   const promises = [];
@@ -26,5 +22,5 @@ export async function getItems() {
 
   const battleItems = [...res.map((data) => data.items).flat()];
 
-  return battleItems;
+  return NextResponse.json(battleItems);
 }

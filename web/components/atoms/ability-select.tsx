@@ -3,7 +3,7 @@
 import { Dispatch, SetStateAction } from "react";
 import * as Select from "@radix-ui/react-select";
 
-import { PokemonAbility } from "../../utils/interfaces";
+import { PokemonAbility } from "../../types";
 import { formatName } from "../../utils/functions";
 import Image from "next/image";
 

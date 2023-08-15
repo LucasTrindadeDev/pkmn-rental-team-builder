@@ -5,7 +5,7 @@ import Image from "next/image";
 import { X } from "@phosphor-icons/react";
 import { PokemonMove } from "pokenode-ts";
 
-import { Pokemon, Item, Move } from "../../utils/interfaces";
+import { Pokemon, BattleItem, Move } from "../../types";
 import AddPokemon from "../atoms/add-pokemon";
 import TextInput from "../atoms/text-input";
 import PokemonTypes from "../atoms/pokemon-types";
@@ -20,7 +20,7 @@ export default function PokemonBox() {
   const [pokemon, setPokemon] = useState<Pokemon | undefined>(undefined);
   const [level, setLevel] = useState<number>(1);
   const [ability, setAbility] = useState<string | undefined>();
-  const [item, setItem] = useState<Item | undefined>(undefined);
+  const [item, setItem] = useState<BattleItem | undefined>(undefined);
   const [teratype, setTeratype] = useState<string>("");
   const [moves, setMoves] = useState<Move[]>([]);
   const [learnableMoves, setLearnableMoves] = useState<
