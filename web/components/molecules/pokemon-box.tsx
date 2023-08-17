@@ -1,37 +1,33 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { X } from "@phosphor-icons/react";
-import { PokemonMove } from "pokenode-ts";
 
 import { Pokemon, BattleItem, Move } from "../../types";
-import AddPokemon from "../atoms/add-pokemon";
 import TextInput from "../atoms/text-input";
 import PokemonTypes from "../atoms/pokemon-types";
 import AbilitySelect from "../atoms/ability-select";
 import AddItem from "../atoms/add-item";
-import { formatName } from "../../utils/functions";
 import AddMove from "../atoms/add-move";
 import SelectedMove from "../atoms/selected-move";
 import SelectedItem from "../atoms/selected-item";
+import { store } from "../../store/store";
+import { removeTeamPokemon } from "../../store/features/teamSlice";
 
-export default function PokemonBox() {
-  const [pokemon, setPokemon] = useState<Pokemon | undefined>(undefined);
+export default function PokemonBox({
+  pokemon,
+}: {
+  pokemon: Pokemon | undefined;
+}) {
   const [level, setLevel] = useState<number>(1);
   const [ability, setAbility] = useState<string | undefined>();
   const [item, setItem] = useState<BattleItem | undefined>(undefined);
   const [teratype, setTeratype] = useState<string>("");
   const [moves, setMoves] = useState<Move[]>([]);
-  const [learnableMoves, setLearnableMoves] = useState<
-    PokemonMove[] | undefined
-  >(undefined);
 
-  function removePokemon(): void {
-    setPokemon(undefined);
-    setItem(undefined);
-    setMoves([]);
-    setLearnableMoves(undefined);
+  function removePokemon(name: string): void {
+    store.dispatch(removeTeamPokemon({ name: name }));
   }
 
   function resetMoveSlot(name: string): void {
@@ -105,7 +101,7 @@ export default function PokemonBox() {
                   setMove={(move: Move) => handleMoveSubmit(move)}
                   key={`move-${i + 1}`}
                   disabled={i > 0 && moves[i - 1] === undefined}
-                  learnableMoves={learnableMoves}
+                  learnableMoves={pokemon.learnableMoves}
                 />
               )
             )}
@@ -114,15 +110,12 @@ export default function PokemonBox() {
           <X
             className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 cursor-pointer text-pk-white border-red-900 border-2 bg-red-500 rounded-full"
             size={24}
-            onClick={() => removePokemon()}
+            onClick={() => removePokemon(pokemon?.species)}
             alt="Remove Pokémon"
           />
         </div>
       ) : (
-        <AddPokemon
-          setPokemon={setPokemon}
-          setLearnableMoves={setLearnableMoves}
-        />
+        <>x</>
       )}
     </div>
   );

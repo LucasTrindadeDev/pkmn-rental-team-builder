@@ -1,4 +1,5 @@
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import { PokemonMove } from "pokenode-ts";
 
 export interface Pokemon {
   species: string;
@@ -6,6 +7,7 @@ export interface Pokemon {
   types: string[];
   level: number;
   abilities: PokemonAbility[];
+  learnableMoves: PokemonMove[];
 }
 
 export interface Team {

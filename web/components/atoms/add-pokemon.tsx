@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, Dispatch, SetStateAction, useEffect } from "react";
-import { PokemonClient, PokemonEntry, PokemonMove } from "pokenode-ts";
+import { useState, useEffect } from "react";
+import { PokemonClient, PokemonEntry } from "pokenode-ts";
 
-import { Pokemon } from "../../types";
+import { store, useAppSelector } from "../../store/store";
+import { setTeamPokemon } from "../../store/features/teamSlice";
+
 import { variants } from "../../utils/pokemon-variants";
-import { useAppSelector } from "../../store/store";
 import Urshifu from "./pokemon-variants/urshifu";
 import Rotom from "./pokemon-variants/rotom";
 import Genies from "./pokemon-variants/genies";
@@ -13,13 +14,7 @@ import RegionalForms from "./pokemon-variants/regional-forms";
 import Darmanitan from "./pokemon-variants/darmanitan";
 import Basculin from "./pokemon-variants/basculin";
 
-export default function AddPokemon({
-  setPokemon,
-  setLearnableMoves,
-}: {
-  setPokemon: Dispatch<SetStateAction<Pokemon | undefined>>;
-  setLearnableMoves: Dispatch<SetStateAction<PokemonMove[] | undefined>>;
-}) {
+export default function AddPokemon() {
   const [search, setSearch] = useState<string>("");
   const [suggestPokemon, setSuggestPokemon] = useState<PokemonEntry[]>([]);
 
@@ -46,75 +41,25 @@ export default function AddPokemon({
     setSuggestPokemon(suggest);
   }
 
-  function searchPokemon(name: string): void {
-    (async () => {
-      const api = new PokemonClient();
+  async function searchPokemon(name: string) {
+    const pokemonData = await fetch(
+      `http://localhost:3000/api/pokemon?name=${name}`
+    );
+    const pokemon = await pokemonData.json();
 
-      if (name === "basculegion") {
-        await api
-          .getPokemonById(902)
-          .then((data) => {
-            console.log(data);
-
-            const pokemon = {
-              species: data.species.name.replace("-", " "),
-              sprite: data.sprites.front_default,
-              level: 50,
-              types: data.types.map((type) => {
-                return type.type.name;
-              }),
-              abilities: data.abilities.map((ability) => {
-                return {
-                  name: ability.ability.name,
-                  is_hidden: ability.is_hidden,
-                  slot: ability.slot,
-                };
-              }),
-            };
-
-            setPokemon(pokemon);
-            setLearnableMoves(data.moves);
-          })
-          .catch((error) => console.error(error));
-      } else {
-        await api
-          .getPokemonByName(name)
-          .then((data) => {
-            console.log(data);
-
-            const pokemon = {
-              species: data.species.name.replace("-", " "),
-              sprite: data.sprites.front_default,
-              level: 50,
-              types: data.types.map((type) => {
-                return type.type.name;
-              }),
-              abilities: data.abilities.map((ability) => {
-                return {
-                  name: ability.ability.name,
-                  is_hidden: ability.is_hidden,
-                  slot: ability.slot,
-                };
-              }),
-            };
-
-            setPokemon(pokemon);
-            setLearnableMoves(data.moves);
-          })
-          .catch((error) => console.error(error));
-      }
-    })();
+    store.dispatch(setTeamPokemon({ pokemon: pokemon }));
+    setSearch("");
   }
 
   return (
-    <div className="relative">
+    <div className="relative w-48 h-10 mx-auto z-30 my-5">
       <input
-        className="rounded px-2 py-1 border-pk-white border-2 border-solid w-40 bg-pk-blue outline-none text-pk-white placeholder-pk-white relative z-20"
+        className="rounded px-2 py-1 border-pk-white border-2 border-solid w-full bg-pk-blue outline-none text-pk-white placeholder-pk-white relative z-20"
         name="pokemon"
-        defaultValue=""
         placeholder="Pokémon name"
         autoComplete="off"
         onChange={(e) => setSearch(e.target.value)}
+        value={search}
       />
 
       {suggestPokemon.length > 0 && (

@@ -33,12 +33,23 @@ export const TeamSlice = createSlice({
     setTrainerGame: (state, action: PayloadAction<{ game: string }>) => {
       state.team.trainer.game = action.payload.game;
     },
-    setTeamPokemon: (state, action: PayloadAction<{ pokemon: Pokemon[] }>) => {
-      state.team.pokemon = action.payload.pokemon;
+    setTeamPokemon: (state, action: PayloadAction<{ pokemon: Pokemon }>) => {
+      state.team.pokemon.push(action.payload.pokemon);
+    },
+    removeTeamPokemon: (state, action: PayloadAction<{ name: string }>) => {
+      state.team.pokemon = state.team.pokemon.filter((pokemon) => {
+        return pokemon.species !== action.payload.name;
+      });
     },
   },
 });
 
 export default TeamSlice.reducer;
-export const { setTeamID, setTeamName, setTrainerName, setTrainerGame } =
-  TeamSlice.actions;
+export const {
+  setTeamID,
+  setTeamName,
+  setTrainerName,
+  setTrainerGame,
+  setTeamPokemon,
+  removeTeamPokemon,
+} = TeamSlice.actions;
