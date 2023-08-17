@@ -26,23 +26,11 @@ export default function RegionalForms({
         ))
       ) : (
         <li
-          key={
-            variants.regionalForms[
-              pokemon as keyof typeof variants.regionalForms
-            ]
-          }
-          onClick={() =>
-            searchPokemon(
-              variants.regionalForms[
-                pokemon as keyof typeof variants.regionalForms
-              ]
-            )
-          }
+          key={regionalForms[0]}
+          onClick={() => searchPokemon(regionalForms[0])}
           className="capitalize px-2 py-1 border-t-2 border-t-pk-white first:border-t-0 cursor-pointer hover:text-pk-yellow transition-colors duration-100"
         >
-          {variants.regionalForms[
-            pokemon as keyof typeof variants.regionalForms
-          ].replaceAll("-", " ")}
+          {regionalForms[0].replaceAll("-", " ")}
         </li>
       )}
 

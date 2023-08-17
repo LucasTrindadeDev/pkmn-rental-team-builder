@@ -1,38 +1,40 @@
 "use client";
 
-import { store } from "../store/store";
-import { Provider } from "react-redux";
-
-import { setPokedex } from "../store/features/pokedexSlice";
-import { setBattleItems } from "../store/features/battleItemsSlice";
-
+import AppProvider from "../components/organisms/provider";
 import TeamHeader from "../components/organisms/team-header";
 import TeamPokemons from "../components/organisms/team-pokemons";
-import { useEffect } from "react";
+import SaveTeam from "../components/atoms/save.team";
+import PokedexPreloader from "../components/organisms/pokedex-preloader";
+import BattleItemsPreloader from "../components/organisms/battle-items.preloader";
 
-export default function Home() {
-  useEffect(() => {
-    const fetchData = async () => {
-      const pokedexData = await fetch("http://localhost:3000/api/pokedex");
-      const pokedex = await pokedexData.json();
+const loadInitialData = async () => {
+  const pokedexData = await fetch("http://localhost:3000/api/pokedex", {
+    cache: "force-cache",
+  });
+  const pokedex = await pokedexData.json();
 
-      const itemsData = await fetch("http://localhost:3000/api/battle-items");
-      const battleItems = await itemsData.json();
+  const itemsData = await fetch("http://localhost:3000/api/battle-items", {
+    cache: "force-cache",
+  });
+  const battleItems = await itemsData.json();
 
-      store.dispatch(setPokedex({ pokedex: pokedex }));
-      store.dispatch(setBattleItems({ battleItems: battleItems }));
-    };
+  return { pokedex, battleItems };
+};
 
-    fetchData();
-  }, []);
+export default async function Home() {
+  const data = await loadInitialData();
 
   return (
-    <Provider store={store}>
-      <main className="h-screen flex flex-col bg-pk-turquoise p-10">
+    <main className="h-screen flex flex-col bg-pk-turquoise p-10">
+      <PokedexPreloader pokedex={data.pokedex} />
+      <BattleItemsPreloader battleItems={data.battleItems} />
+      <AppProvider>
         <TeamHeader />
 
         <TeamPokemons />
-      </main>
-    </Provider>
+
+        <SaveTeam />
+      </AppProvider>
+    </main>
   );
 }
