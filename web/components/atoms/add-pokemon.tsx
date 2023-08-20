@@ -70,6 +70,7 @@ export default function AddPokemon() {
             ) {
               return (
                 <Genies
+                  key="genies-form"
                   pokemon={pokemon.pokemon_species.name}
                   searchPokemon={searchPokemon}
                 />
@@ -79,6 +80,7 @@ export default function AddPokemon() {
             if (pokemon.pokemon_species.name === "rotom") {
               return (
                 <Rotom
+                  key="rotom-forms"
                   pokemon={pokemon.pokemon_species.name}
                   searchPokemon={searchPokemon}
                 />
@@ -86,15 +88,27 @@ export default function AddPokemon() {
             }
 
             if (pokemon.pokemon_species.name === "urshifu") {
-              return <Urshifu searchPokemon={searchPokemon} />;
+              return (
+                <Urshifu key="urshifu-forms" searchPokemon={searchPokemon} />
+              );
             }
 
             if (pokemon.pokemon_species.name === "darmanitan") {
-              return <Darmanitan searchPokemon={searchPokemon} />;
+              return (
+                <Darmanitan
+                  key="darmanitan-forms"
+                  searchPokemon={searchPokemon}
+                />
+              );
             }
 
             if (pokemon.pokemon_species.name === "basculin") {
-              return <Basculin searchPokemon={searchPokemon} />;
+              return (
+                <Basculin
+                  key="basculin-variants"
+                  searchPokemon={searchPokemon}
+                />
+              );
             }
 
             if (
@@ -105,6 +119,7 @@ export default function AddPokemon() {
             ) {
               return (
                 <RegionalForms
+                  key={`${pokemon.pokemon_species.name}-regional-forms`}
                   pokemon={pokemon.pokemon_species.name}
                   searchPokemon={searchPokemon}
                 />

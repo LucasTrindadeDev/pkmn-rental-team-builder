@@ -7,6 +7,7 @@ import SaveTeam from "../components/atoms/save.team";
 import PokedexPreloader from "../components/organisms/pokedex-preloader";
 import BattleItemsPreloader from "../components/organisms/battle-items.preloader";
 import AddPokemon from "../components/atoms/add-pokemon";
+import { useEffect, useState } from "react";
 
 const loadInitialData = async () => {
   const pokedexData = await fetch("http://localhost:3000/api/pokedex", {
@@ -18,7 +19,6 @@ const loadInitialData = async () => {
     cache: "force-cache",
   });
   const battleItems = await itemsData.json();
-
   return { pokedex, battleItems };
 };
 
@@ -26,7 +26,7 @@ export default async function Home() {
   const data = await loadInitialData();
 
   return (
-    <main className="h-screen flex flex-col bg-pk-turquoise p-10">
+    <main className="min-h-screen flex flex-col bg-pk-turquoise p-10">
       <PokedexPreloader pokedex={data.pokedex} />
       <BattleItemsPreloader battleItems={data.battleItems} />
       <AppProvider>
