@@ -3,7 +3,7 @@ import { PokemonMove } from "pokenode-ts";
 
 export interface Pokemon {
   species: string;
-  sprite: string | null | StaticImport;
+  sprite: string | StaticImport;
   types: string[];
   level: number;
   abilities: PokemonAbility[];
@@ -21,7 +21,7 @@ export interface Team {
 }
 
 export interface BattleItem {
-  sprite: string | null | StaticImport;
+  sprite: string | StaticImport;
   name: string;
 }
 
