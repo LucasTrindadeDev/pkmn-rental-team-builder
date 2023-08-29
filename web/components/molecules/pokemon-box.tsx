@@ -39,17 +39,19 @@ export default function PokemonBox({
   }, [pokemon]);
 
   useEffect(() => {
-    if (!pokemon || !teratype) return;
+    if (!pokemon) return;
 
     const teamPkmn = {
       ...pokemon,
       ability: ability,
       teraType: teratype,
       item: item,
+      moves: moves,
+      level: level,
     };
 
     store.dispatch(updatePokemon({ pokemon: teamPkmn }));
-  }, [ability, item, teratype]);
+  }, [ability, item, teratype, moves, level]);
 
   function removePokemon(name: string): void {
     store.dispatch(removeTeamPokemon({ name: name }));

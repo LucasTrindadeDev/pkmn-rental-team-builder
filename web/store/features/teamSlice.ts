@@ -49,6 +49,7 @@ export const TeamSlice = createSlice({
 
         return {
           ...pkmn,
+          level: action.payload.pokemon.level,
           teraType: action.payload.pokemon.teraType,
           ability: action.payload.pokemon.ability,
           moves: action.payload.pokemon.moves,
