@@ -11,7 +11,7 @@ export interface Pokemon {
   teraType: string;
   moves: Move[];
   ability: string;
-  item: BattleItem;
+  item: BattleItem | undefined;
 }
 
 export interface Team {

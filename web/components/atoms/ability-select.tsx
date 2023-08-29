@@ -12,7 +12,7 @@ export default function AbilitySelect({
   setAbility,
 }: {
   abilities: PokemonAbility[];
-  setAbility: Dispatch<SetStateAction<string | undefined>>;
+  setAbility: Dispatch<SetStateAction<string>>;
 }) {
   const defaultAbility = abilities.filter((ability) => {
     return ability.slot == 1;

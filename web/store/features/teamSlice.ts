@@ -41,23 +41,20 @@ export const TeamSlice = createSlice({
         return pokemon.species !== action.payload.name;
       });
     },
-    updatePokemonAbility: (
-      state,
-      action: PayloadAction<{ pokemon: string; ability: string }>
-    ) => {
-      const index = state.team.pokemon
-        .map((po) => po.species)
-        .indexOf(action.payload.pokemon);
-      state.team.pokemon[index].ability = action.payload.ability;
-    },
-    updatePokemonItem: (
-      state,
-      action: PayloadAction<{ pokemon: string; item: BattleItem }>
-    ) => {
-      const index = state.team.pokemon
-        .map((po) => po.species)
-        .indexOf(action.payload.pokemon);
-      state.team.pokemon[index].item = action.payload.item;
+    updatePokemon: (state, action: PayloadAction<{ pokemon: Pokemon }>) => {
+      state.team.pokemon = state.team.pokemon.map((pkmn) => {
+        if (pkmn.species !== action.payload.pokemon.species) {
+          return pkmn;
+        }
+
+        return {
+          ...pkmn,
+          teraType: action.payload.pokemon.teraType,
+          ability: action.payload.pokemon.ability,
+          moves: action.payload.pokemon.moves,
+          item: action.payload.pokemon.item,
+        };
+      });
     },
   },
 });
@@ -70,6 +67,5 @@ export const {
   setTrainerGame,
   setTeamPokemon,
   removeTeamPokemon,
-  updatePokemonAbility,
-  updatePokemonItem,
+  updatePokemon,
 } = TeamSlice.actions;

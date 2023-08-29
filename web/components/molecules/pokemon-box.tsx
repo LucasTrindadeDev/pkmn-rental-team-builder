@@ -15,8 +15,7 @@ import SelectedItem from "../atoms/selected-item";
 import { store } from "../../store/store";
 import {
   removeTeamPokemon,
-  updatePokemonAbility,
-  updatePokemonItem,
+  updatePokemon,
 } from "../../store/features/teamSlice";
 
 export default function PokemonBox({
@@ -25,40 +24,32 @@ export default function PokemonBox({
   pokemon: Pokemon | undefined;
 }) {
   const [level, setLevel] = useState<number>(50);
-  const [ability, setAbility] = useState<string | undefined>(
-    pokemon?.abilities[0].name ?? undefined
+  const [ability, setAbility] = useState<string>(
+    pokemon?.abilities[0].name ?? ""
   );
   const [item, setItem] = useState<BattleItem | undefined>(undefined);
   const [teratype, setTeratype] = useState<string>(pokemon?.types[0] ?? "");
   const [moves, setMoves] = useState<Move[]>([]);
 
   useEffect(() => {
-    if (!pokemon || ability) return;
+    if (!pokemon || (ability && teratype)) return;
 
     setAbility(pokemon.abilities[0].name);
+    setTeratype(pokemon.types[0]);
   }, [pokemon]);
 
   useEffect(() => {
-    if (!pokemon || !ability) return;
+    if (!pokemon || !teratype) return;
 
-    store.dispatch(
-      updatePokemonAbility({
-        pokemon: pokemon.species,
-        ability: ability,
-      })
-    );
-  }, [ability]);
+    const teamPkmn = {
+      ...pokemon,
+      ability: ability,
+      teraType: teratype,
+      item: item,
+    };
 
-  useEffect(() => {
-    if (!pokemon || !item) return;
-
-    store.dispatch(
-      updatePokemonItem({
-        pokemon: pokemon.species,
-        item: item,
-      })
-    );
-  }, [item]);
+    store.dispatch(updatePokemon({ pokemon: teamPkmn }));
+  }, [ability, item, teratype]);
 
   function removePokemon(name: string): void {
     store.dispatch(removeTeamPokemon({ name: name }));
