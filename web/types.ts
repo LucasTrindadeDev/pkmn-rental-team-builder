@@ -8,6 +8,10 @@ export interface Pokemon {
   level: number;
   abilities: PokemonAbility[];
   learnableMoves: PokemonMove[];
+  teraType: string;
+  moves: Move[];
+  ability: string;
+  item: BattleItem;
 }
 
 export interface Team {

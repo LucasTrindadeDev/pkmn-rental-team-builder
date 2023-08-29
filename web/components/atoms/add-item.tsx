@@ -63,8 +63,6 @@ export default function AddItem({
       await api
         .getItemByName(query)
         .then((data) => {
-          console.log(data);
-
           setItem({
             sprite: data.sprites.default,
             name: data.name,

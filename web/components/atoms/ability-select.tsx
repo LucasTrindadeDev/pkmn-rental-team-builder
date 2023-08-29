@@ -47,7 +47,7 @@ export default function AbilitySelect({
       </Select.Trigger>
 
       <Select.Portal>
-        <Select.Content className="bg-pk-turquoise rounded-md shadow-sm">
+        <Select.Content className="bg-pk-turquoise rounded-md shadow-sm z-10">
           <Select.Viewport className="p-2">
             {abilities.map((ability) => (
               <Select.Item

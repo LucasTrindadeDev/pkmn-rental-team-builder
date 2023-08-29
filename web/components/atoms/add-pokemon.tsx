@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { PokemonClient, PokemonEntry } from "pokenode-ts";
+import { PokemonEntry } from "pokenode-ts";
 
 import { store, useAppSelector } from "../../store/store";
 import { setTeamPokemon } from "../../store/features/teamSlice";

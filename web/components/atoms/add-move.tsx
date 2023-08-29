@@ -58,8 +58,6 @@ export default function AddMove({
       await api
         .getMoveByName(query)
         .then((data) => {
-          console.log(data);
-
           setMove({
             type: data.type.name,
             name: data.name,

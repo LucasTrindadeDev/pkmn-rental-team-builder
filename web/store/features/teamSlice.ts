@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Pokemon, Team } from "../../types";
+import { BattleItem, Pokemon, Team } from "../../types";
 
 interface TeamSlice {
   team: Team;
@@ -41,6 +41,24 @@ export const TeamSlice = createSlice({
         return pokemon.species !== action.payload.name;
       });
     },
+    updatePokemonAbility: (
+      state,
+      action: PayloadAction<{ pokemon: string; ability: string }>
+    ) => {
+      const index = state.team.pokemon
+        .map((po) => po.species)
+        .indexOf(action.payload.pokemon);
+      state.team.pokemon[index].ability = action.payload.ability;
+    },
+    updatePokemonItem: (
+      state,
+      action: PayloadAction<{ pokemon: string; item: BattleItem }>
+    ) => {
+      const index = state.team.pokemon
+        .map((po) => po.species)
+        .indexOf(action.payload.pokemon);
+      state.team.pokemon[index].item = action.payload.item;
+    },
   },
 });
 
@@ -52,4 +70,6 @@ export const {
   setTrainerGame,
   setTeamPokemon,
   removeTeamPokemon,
+  updatePokemonAbility,
+  updatePokemonItem,
 } = TeamSlice.actions;

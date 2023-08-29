@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { X } from "@phosphor-icons/react";
 
@@ -13,18 +13,52 @@ import AddMove from "../atoms/add-move";
 import SelectedMove from "../atoms/selected-move";
 import SelectedItem from "../atoms/selected-item";
 import { store } from "../../store/store";
-import { removeTeamPokemon } from "../../store/features/teamSlice";
+import {
+  removeTeamPokemon,
+  updatePokemonAbility,
+  updatePokemonItem,
+} from "../../store/features/teamSlice";
 
 export default function PokemonBox({
   pokemon,
 }: {
   pokemon: Pokemon | undefined;
 }) {
-  const [level, setLevel] = useState<number>(1);
-  const [ability, setAbility] = useState<string | undefined>();
+  const [level, setLevel] = useState<number>(50);
+  const [ability, setAbility] = useState<string | undefined>(
+    pokemon?.abilities[0].name ?? undefined
+  );
   const [item, setItem] = useState<BattleItem | undefined>(undefined);
-  const [teratype, setTeratype] = useState<string>("");
+  const [teratype, setTeratype] = useState<string>(pokemon?.types[0] ?? "");
   const [moves, setMoves] = useState<Move[]>([]);
+
+  useEffect(() => {
+    if (!pokemon || ability) return;
+
+    setAbility(pokemon.abilities[0].name);
+  }, [pokemon]);
+
+  useEffect(() => {
+    if (!pokemon || !ability) return;
+
+    store.dispatch(
+      updatePokemonAbility({
+        pokemon: pokemon.species,
+        ability: ability,
+      })
+    );
+  }, [ability]);
+
+  useEffect(() => {
+    if (!pokemon || !item) return;
+
+    store.dispatch(
+      updatePokemonItem({
+        pokemon: pokemon.species,
+        item: item,
+      })
+    );
+  }, [item]);
 
   function removePokemon(name: string): void {
     store.dispatch(removeTeamPokemon({ name: name }));

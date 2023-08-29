@@ -7,7 +7,7 @@ export default function TeamPokemons() {
   const pokemonList = useAppSelector((state) => state.team.team.pokemon);
 
   return (
-    <div className="grow grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-3 xl:grid-cols-3 xl:grid-rows-2 gap-10">
+    <div className="grow grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-3 2xl:grid-cols-3 2xl:grid-rows-2 gap-10">
       <PokemonBox key="pokemon-1" pokemon={pokemonList[0]} />
       <PokemonBox key="pokemon-2" pokemon={pokemonList[1]} />
       <PokemonBox key="pokemon-3" pokemon={pokemonList[2]} />
