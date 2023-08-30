@@ -3,8 +3,8 @@
 import { Dispatch, SetStateAction } from "react";
 import * as Select from "@radix-ui/react-select";
 
-import { PokemonAbility } from "../../types";
-import { formatName } from "../../utils/functions";
+import { PokemonAbility } from "../../../types";
+import { formatName } from "../../../utils/functions";
 import Image from "next/image";
 
 export default function AbilitySelect({
@@ -42,6 +42,7 @@ export default function AbilitySelect({
             src="/icons/chevron-down.svg"
             alt="&#xF282;"
             className="text-pk-white"
+            data-testid="chevron-down"
           />
         </Select.Icon>
       </Select.Trigger>

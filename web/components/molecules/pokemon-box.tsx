@@ -7,7 +7,7 @@ import { X } from "@phosphor-icons/react";
 import { Pokemon, BattleItem, Move } from "../../types";
 import TextInput from "../atoms/text-input";
 import PokemonTypes from "../atoms/pokemon-types";
-import AbilitySelect from "../atoms/ability-select";
+import AbilitySelect from "../atoms/AbilitySelect";
 import AddItem from "../atoms/add-item";
 import AddMove from "../atoms/add-move";
 import SelectedMove from "../atoms/selected-move";
