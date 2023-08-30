@@ -14,7 +14,7 @@ export default function AbilitySelect({
   abilities: PokemonAbility[];
   setAbility: Dispatch<SetStateAction<string>>;
 }) {
-  const defaultAbility = abilities.filter((ability) => {
+  const defaultAbility = abilities.find((ability) => {
     return ability.slot == 1;
   });
 
@@ -27,14 +27,14 @@ export default function AbilitySelect({
 
   return (
     <Select.Root
-      defaultValue={defaultAbility[0].name}
+      defaultValue={defaultAbility?.name}
       onValueChange={(ability) => setAbility(ability)}
     >
       <Select.Trigger
         aria-label="Ability"
         className="flex items-center placeholder:text-pk-white placeholder:font-normal text-white font-semibold"
       >
-        <Select.Value />
+        <Select.Value data-testid="ability" />
         <Select.Icon className="ml-2">
           <Image
             width={16}
@@ -48,7 +48,10 @@ export default function AbilitySelect({
       </Select.Trigger>
 
       <Select.Portal>
-        <Select.Content className="bg-pk-turquoise rounded-md shadow-sm z-10">
+        <Select.Content
+          className="bg-pk-turquoise rounded-md shadow-sm z-10"
+          data-testid="ability-list"
+        >
           <Select.Viewport className="p-2">
             {abilities.map((ability) => (
               <Select.Item

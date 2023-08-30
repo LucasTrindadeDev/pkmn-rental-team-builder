@@ -1,4 +1,5 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, getByTestId, render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import AbilitySelect from ".";
 
 describe("AbilitySelect", () => {
@@ -18,12 +19,13 @@ describe("AbilitySelect", () => {
       },
     ];
 
-    it("should render correctly", () => {
+    it("should render correctly with the default ability", () => {
       render(
         <AbilitySelect abilities={mockAbilities} setAbility={mockSetAbility} />
       );
 
       const defaultAbility = screen.getByText("Flame Body");
+
       expect(defaultAbility).toBeInTheDocument();
     });
 
@@ -35,11 +37,38 @@ describe("AbilitySelect", () => {
       expect(screen.getByTestId("chevron-down")).toBeInTheDocument();
     });
 
-    // it("should show the ability list when the ability is clicked", () => {
-    //   render(
-    //     <AbilitySelect abilities={mockAbilities} setAbility={mockSetAbility} />
-    //   );
-    // });
+    it("should show the ability list when the ability is clicked", async () => {
+      render(
+        <AbilitySelect abilities={mockAbilities} setAbility={mockSetAbility} />
+      );
+
+      const selectTrigger = screen.getByTestId("chevron-down");
+      userEvent.click(selectTrigger);
+
+      const abilityList = await screen.findByTestId("ability-list");
+      const secondaryAbility = await screen.findByText("Gale Wings");
+
+      expect(abilityList).toBeInTheDocument();
+      expect(secondaryAbility).toBeInTheDocument();
+    });
+
+    it("should change the ability when other ability in the list is clicked", async () => {
+      render(
+        <AbilitySelect abilities={mockAbilities} setAbility={mockSetAbility} />
+      );
+
+      const ability = screen.getByTestId("ability");
+      expect(ability).toHaveTextContent("Flame Body");
+
+      const selectTrigger = screen.getByTestId("chevron-down");
+      userEvent.click(selectTrigger);
+
+      const secondaryAbility = await screen.findByText("Gale Wings");
+      await userEvent.click(secondaryAbility);
+
+      expect(mockSetAbility).toHaveBeenCalledWith("gale-wings");
+      expect(ability).toHaveTextContent("Gale Wings");
+    });
   });
 
   describe("Pokémon with just one ability", () => {
