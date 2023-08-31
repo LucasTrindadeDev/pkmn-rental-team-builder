@@ -9,9 +9,9 @@ import {
 } from "react";
 import { ItemClient } from "pokenode-ts";
 
-import { BattleItem } from "../../types";
-import { useAppSelector } from "../../store/store";
-import { formatName } from "../../utils/functions";
+import { BattleItem } from "../../../types";
+import { useAppSelector } from "../../../store/store";
+import { formatName } from "../../../utils/functions";
 
 export default function AddItem({
   setItem,
@@ -76,7 +76,7 @@ export default function AddItem({
 
   return (
     <div className="flex flex-col h-full gap-2 items-center justify-center relative">
-      <form onSubmit={(e) => handleItemSubmit(e)}>
+      <form onSubmit={(e) => handleItemSubmit(e)} data-testid="item-form">
         <input
           className="rounded px-2 py-1 border-pk-white border-2 border-solid w-full bg-transparent outline-none text-pk-white placeholder-pk-white"
           name="item"
@@ -84,11 +84,15 @@ export default function AddItem({
           placeholder="Item name"
           autoComplete="off"
           onChange={(e) => setSearch(e.target.value)}
+          data-testid="item-input"
         />
       </form>
 
       {suggestItems && suggestItems.length > 0 && (
-        <ul className="absolute bottom-1 translate-y-full rounded-b-md bg-pk-turquoise w-full pt-2 z-10 shadow-md">
+        <ul
+          className="absolute bottom-1 translate-y-full rounded-b-md bg-pk-turquoise w-full pt-2 z-10 shadow-md"
+          data-testid="item-suggestion"
+        >
           {suggestItems.map((item: BattleItem) => (
             <li
               key={item.name}

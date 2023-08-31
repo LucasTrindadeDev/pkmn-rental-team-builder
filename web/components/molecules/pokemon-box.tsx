@@ -8,7 +8,7 @@ import { Pokemon, BattleItem, Move } from "../../types";
 import TextInput from "../atoms/text-input";
 import PokemonTypes from "../atoms/pokemon-types";
 import AbilitySelect from "../atoms/AbilitySelect";
-import AddItem from "../atoms/add-item";
+import AddItem from "../atoms/AddItem";
 import AddMove from "../atoms/add-move";
 import SelectedMove from "../atoms/selected-move";
 import SelectedItem from "../atoms/selected-item";
