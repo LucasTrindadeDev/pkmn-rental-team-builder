@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Trainer {
+  name  String
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  game  String
+  teams Team[]
+}
+
+model Team {
+  name      String
+  id        String    @id @map("_id") @db.ObjectId
+  trainer   Trainer   @relation(fields: [trainerId], references: [id])
+  trainerId String    @db.ObjectId
+  pokemon   Pokemon[]
+}
+
+type Pokemon {
+  ability  String
+  item     String
+  level    Int
+  moves    Move[]
+  species  String
+  sprite   String
+  teraType String
+  types    String[]
+}
+
+type Move {
+  type String
+  name String
+}
