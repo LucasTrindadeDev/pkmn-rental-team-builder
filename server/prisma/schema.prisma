@@ -16,7 +16,8 @@ model Trainer {
 
 model Team {
   name      String
-  id        String    @id @map("_id") @db.ObjectId
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  teamId    String    @unique
   trainer   Trainer   @relation(fields: [trainerId], references: [id])
   trainerId String    @db.ObjectId
   pokemon   Pokemon[]

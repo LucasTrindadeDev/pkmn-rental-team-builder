@@ -1,0 +1,97 @@
+{
+  "name": "Team 1",
+  "id": "GCU0R8",
+  "trainerId": "650365c6bbc2abb7941d8dec",
+  "pokemon": [
+    {
+      "ability": "defiant",
+      "item": "life-orb",
+      "level": 75,
+      "moves":  [
+        {
+          "type": "rock",
+          "name": "rock-slide"
+        },
+        {
+          "type": "fighting",
+          "name": "close-combat"
+        },
+        {
+          "type": "normal",
+          "name": "protect"
+        },
+        {
+          "type": "ghost",
+          "name": "rage-fist"
+        }
+      ],
+      "species": "annihilape",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/979.png",
+      "teraType": "dark",
+      "types": [
+        "fighting",
+        "ghost"
+      ]
+    },
+    {
+      "ability": "gale-wings",
+      "item": "covert-cloak",
+      "level": 75,
+      "moves":  [
+        {
+          "type": "fire",
+          "name": "will-o-wisp"
+        },
+        {
+          "type": "fire",
+          "name": "flare-blitz"
+        },
+        {
+          "type": "flying",
+          "name": "tailwind"
+        },
+        {
+          "type": "normal",
+          "name": "protect"
+        }
+      ],
+      "species": "talonflame",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/663.png",
+      "teraType": "water",
+      "types": [
+        "fire",
+        "flying"
+      ]
+    },
+    {
+      "ability": "protean",
+      "item": "clear-amulet",
+      "level": 54,
+      "moves":  [
+        {
+          "type": "normal",
+          "name": "protect"
+        },
+        {
+          "type": "dark",
+          "name": "knock-off"
+        },
+        {
+          "type": "grass",
+          "name": "flower-trick"
+        },
+        {
+          "type": "bug",
+          "name": "u-turn"
+        }
+      ],
+      "species": "meowscarada",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/908.png",
+      "teraType": "grass",
+      "types": [
+        "grass",
+        "dark"
+      ]
+    }
+  ]
+}

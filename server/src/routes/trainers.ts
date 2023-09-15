@@ -1,10 +1,10 @@
-import { FastifyInstance } from "fastify";
+import { FastifyInstance } from "fastify"
 import z from "zod"
-import { prisma } from "../lib/prisma";
+import { prisma } from "../lib/prisma"
 
 export async function trainersRoutes(app: FastifyInstance) {
   app.get('/trainers', async () => {
-    const trainers = await prisma.trainer.findMany();
+    const trainers = await prisma.trainer.findMany()
     return trainers
   })
   
