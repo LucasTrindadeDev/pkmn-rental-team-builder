@@ -7,7 +7,6 @@ import SaveTeam from "../components/atoms/save.team";
 import PokedexPreloader from "../components/organisms/pokedex-preloader";
 import BattleItemsPreloader from "../components/organisms/battle-items.preloader";
 import AddPokemon from "../components/atoms/add-pokemon";
-import { useEffect, useState } from "react";
 
 const loadInitialData = async () => {
   const pokedexData = await fetch("http://localhost:3000/api/pokedex", {

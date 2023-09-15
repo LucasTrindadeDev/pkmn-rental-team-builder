@@ -56,7 +56,7 @@ type DBPokemon = {
   ability: string
   item: string
   level: number
-  moves: Move[]
+  moves: DBMove[]
   species: string
   sprite: string
   teraType: string
@@ -66,4 +66,9 @@ type DBPokemon = {
 type DBMove = {
   type: string
   name: string
+}
+
+export type Trainer = {
+  name: string
+  game: string
 }

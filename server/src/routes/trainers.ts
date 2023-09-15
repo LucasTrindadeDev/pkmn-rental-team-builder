@@ -16,14 +16,46 @@ export async function trainersRoutes(app: FastifyInstance) {
 
     const { name, game } = bodySchema.parse(request.body)
 
-    const user = await prisma.trainer.create({
+    const trainer = await prisma.trainer.create({
       data: {
         name,
         game,
       }
     })
 
-    return user
+    return trainer
+  })
+
+  app.get('/trainers/:id', async (request) => {
+    const paramsSchema = z.object({
+      id: z.string(),
+    })
+
+    const { id } = paramsSchema.parse(request.params)
+
+    const trainer = await prisma.trainer.findUniqueOrThrow({
+      where: {
+        id,
+      }
+    })
+
+    return trainer
+  })
+
+  app.get('/trainers/:id/teams', async (request) => {
+    const paramsSchema = z.object({
+      id: z.string(),
+    })
+
+    const { id } = paramsSchema.parse(request.params)
+
+    const teams = await prisma.team.findMany({
+      where: {
+        trainerId: id,
+      }
+    })
+
+    return teams
   })
 
   app.put('/trainers/:id', async (request) => {
@@ -40,7 +72,7 @@ export async function trainersRoutes(app: FastifyInstance) {
 
     const { name, game } = bodySchema.parse(request.body)
 
-    const user = await prisma.trainer.update({
+    const trainer = await prisma.trainer.update({
       where: {
         id,
       },
@@ -50,7 +82,7 @@ export async function trainersRoutes(app: FastifyInstance) {
       }
     })
 
-    return user
+    return trainer
   })
 
   app.delete('/trainers/:id', async (request) => {
