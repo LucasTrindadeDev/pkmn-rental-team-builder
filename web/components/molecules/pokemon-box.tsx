@@ -54,6 +54,10 @@ export default function PokemonBox({
   }, [ability, item, teratype, moves, level]);
 
   function removePokemon(name: string): void {
+    setMoves([])
+    setTeratype("")
+    setAbility("")
+    setItem(undefined)
     store.dispatch(removeTeamPokemon({ name: name }));
   }
 
