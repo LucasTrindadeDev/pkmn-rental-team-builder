@@ -10,25 +10,27 @@ export default function TrainerTeams({ teams }: { teams: TeamData[] }) {
             key={team.teamId}
             className="bg-pk-blue rounded p-2"
           >
-            <div className="flex items-center justify-between">
-              <h4>{team.name}</h4>
-              <h4>{team.teamId}</h4>
-            </div>
+            <a href={`/teams/${team.teamId}`}>
+              <div className="flex items-center justify-between">
+                <h4>{team.name}</h4>
+                <h4>{team.teamId}</h4>
+              </div>
 
-            <ul className="mt-5 grid grid-cols-6 gap-2">
-              {team.pokemon.map((pkmn) => (
-                <li key={pkmn.species}>
-                  <Image
-                    width={50}
-                    height={50}
-                    className="object-contain"
-                    src={pkmn.sprite}
-                    alt={pkmn.species}
-                    title={pkmn.species}
-                  />
-                </li>
-              ))}
-            </ul>
+              <ul className="mt-5 grid grid-cols-6 gap-2">
+                {team.pokemon.map((pkmn) => (
+                  <li key={pkmn.species}>
+                    <Image
+                      width={50}
+                      height={50}
+                      className="object-contain"
+                      src={pkmn.sprite}
+                      alt={pkmn.species}
+                      title={pkmn.species}
+                    />
+                  </li>
+                ))}
+              </ul>
+            </a>
           </li>
         ))}
       </ul> 

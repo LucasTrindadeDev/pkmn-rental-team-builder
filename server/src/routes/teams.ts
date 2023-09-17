@@ -8,6 +8,22 @@ export async function teamsRoutes(app: FastifyInstance) {
     return teams
   })
 
+  app.get('/teams/:teamId', async (request) => {
+    const paramsSchema = z.object({
+      teamId: z.string()
+    })
+
+    const { teamId } = paramsSchema.parse(request.params)
+
+    const team = await prisma.team.findUniqueOrThrow({
+      where: {
+        teamId,
+      },
+    })
+
+    return team
+  })
+
   app.post('/teams', async (request) => {
     const bodySchema = z.object({
       name: z.string(),

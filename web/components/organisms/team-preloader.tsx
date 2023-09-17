@@ -2,18 +2,31 @@
 
 import { useRef } from "react";
 import { store } from "../../store/store";
-import { setPokedex } from "../../store/features/pokedexSlice";
-import { PokemonEntry } from "pokenode-ts";
+import { setTeamID, setTeamName, setTrainerName, setTrainerGame } from "../../store/features/teamSlice";
+import { Pokemon, Trainer } from "../../types";
 
-export default async function PokedexPreloader({
-  pokedex,
+interface Team {
+  id: string;
+  teamId: string;
+  name: string;
+  pokemon: Pokemon[];
+  trainerId: string;
+}
+
+export default async function TeamPreloader({
+  team,
+  trainer
 }: {
-  pokedex: PokemonEntry[];
+  team: Team;
+  trainer: Trainer
 }) {
   const loaded = useRef(false);
 
   if (!loaded.current) {
-    store.dispatch(setPokedex({ pokedex: pokedex }));
+    store.dispatch(setTeamID({ id: team.teamId }));
+    store.dispatch(setTeamName({ name: team.name }));
+    store.dispatch(setTrainerName({ name: trainer.name }));
+    store.dispatch(setTrainerGame({ game: trainer.game }));
     loaded.current = true;
   }
 

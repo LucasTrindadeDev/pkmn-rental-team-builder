@@ -4,12 +4,14 @@ export default function TeamTextInput({
   placeholder,
   defaultValue,
   classes,
+  disabled,
 }: {
   handlerFunction(param: string): void;
   name: string;
   placeholder: string;
   defaultValue: string;
   classes: string;
+  disabled?: boolean
 }) {
   return (
     <input
@@ -18,6 +20,7 @@ export default function TeamTextInput({
       placeholder={placeholder}
       defaultValue={defaultValue}
       onChange={(e) => handlerFunction(e.target.value)}
+      disabled={disabled}
     />
   );
 }

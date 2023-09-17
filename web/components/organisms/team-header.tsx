@@ -1,17 +1,17 @@
-import TeamID from "../molecules/team-id";
-import TeamName from "../molecules/team-name";
-import TrainerInfo from "../molecules/trainer-info";
+import TeamID from "../molecules/TeamId";
+import TeamName from "../molecules/TeamName";
+import TrainerInfo from "../molecules/TrainerInfo";
 
-export default function TeamHeader() {
+export default function TeamHeader({ lockEditing }: { lockEditing?: boolean}) {
   return (
     <div className="flex justify-between">
       <div className="flex items-center gap-10">
-        <TeamName />
+        <TeamName lockEditing={lockEditing} />
 
-        <TrainerInfo />
+        <TrainerInfo lockEditing={lockEditing} />
       </div>
 
-      <TeamID />
+      <TeamID lockEditing={lockEditing} />
     </div>
   );
 }

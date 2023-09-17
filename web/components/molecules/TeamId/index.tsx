@@ -1,9 +1,10 @@
-import { setTeamID } from "../../store/features/teamSlice";
-import { useAppDispatch } from "../../store/store";
-import TeamTextInput from "../atoms/team-text-input";
+import { setTeamID } from "../../../store/features/teamSlice";
+import { useAppDispatch, useAppSelector } from "../../../store/store";
+import TeamTextInput from "../../atoms/team-text-input";
 
-export default function TeamID() {
+export default function TeamID({ lockEditing }: { lockEditing?: boolean}) {
   const dispatch = useAppDispatch();
+  const teamId = useAppSelector((state) => state.team.team.id);
 
   function handleIdChange(id: string) {
     dispatch(setTeamID({ id }));
@@ -18,8 +19,9 @@ export default function TeamID() {
         classes="w-32 border-none bg-transparent outline-none text-xl strong text-pk-white placeholder:text-pk-white/70"
         name="team-id"
         placeholder="Team ID"
-        defaultValue=""
+        defaultValue={teamId}
         handlerFunction={handleIdChange}
+        disabled={lockEditing}
       />
     </div>
   );

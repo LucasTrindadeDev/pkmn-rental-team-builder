@@ -1,11 +1,12 @@
-import { setTrainerName } from "../../store/features/teamSlice";
-import { useAppDispatch } from "../../store/store";
+import { setTrainerName } from "../../../store/features/teamSlice";
+import { useAppDispatch, useAppSelector } from "../../../store/store";
 
-import ChooseGame from "../atoms/choose-game";
-import TeamTextInput from "../atoms/team-text-input";
+import ChooseGame from "../../atoms/choose-game";
+import TeamTextInput from "../../atoms/team-text-input";
 
-export default function TrainerInfo() {
+export default function TrainerInfo({ lockEditing }: { lockEditing?: boolean}) {
   const dispatch = useAppDispatch();
+  const trainerName = useAppSelector((state) => state.team.team.trainer.name)
 
   function handleNameChange(name: string) {
     dispatch(setTrainerName({ name }));
@@ -20,8 +21,9 @@ export default function TrainerInfo() {
         classes="bg-transparent text-pk-white w-40 placeholder:text-pk-white/70 outline-none"
         name="team-name"
         placeholder="Trainer name"
-        defaultValue=""
+        defaultValue={trainerName}
         handlerFunction={handleNameChange}
+        disabled={lockEditing}
       />
     </div>
   );
