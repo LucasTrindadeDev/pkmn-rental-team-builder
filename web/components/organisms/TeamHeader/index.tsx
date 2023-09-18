@@ -1,6 +1,6 @@
-import TeamID from "../molecules/TeamId";
-import TeamName from "../molecules/TeamName";
-import TrainerInfo from "../molecules/TrainerInfo";
+import TeamID from "../../molecules/TeamId";
+import TeamName from "../../molecules/TeamName";
+import TrainerInfo from "../../molecules/TrainerInfo";
 
 export default function TeamHeader({ lockEditing }: { lockEditing?: boolean}) {
   return (

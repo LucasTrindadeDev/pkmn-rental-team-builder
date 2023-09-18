@@ -3,8 +3,8 @@
 import { useState, Dispatch, SetStateAction } from "react";
 import Image from "next/image";
 
-import { typesColors } from "../../utils/types-colors";
-import { capitalizeFirstChar } from "../../utils/functions";
+import { typesColors } from "../../../utils/types-colors";
+import { capitalizeFirstChar } from "../../../utils/functions";
 
 export default function PokemonTypes({
   types,
@@ -13,11 +13,12 @@ export default function PokemonTypes({
 }: {
   types: string[];
   teratype: string;
-  setTeraType: Dispatch<SetStateAction<string>>;
+  setTeraType?: Dispatch<SetStateAction<string>>;
 }) {
   const [choosingTeraType, setChoosingTeraType] = useState<boolean>(false);
 
   function handleTeraTypeChange(type: string): void {
+    if (!setTeraType) return;
     setTeraType(type);
     setChoosingTeraType(false);
   }

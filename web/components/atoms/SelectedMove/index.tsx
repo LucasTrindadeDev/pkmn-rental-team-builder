@@ -1,16 +1,16 @@
 import Image from "next/image";
 import { X } from "@phosphor-icons/react";
 
-import { typesColors } from "../../utils/types-colors";
-import { Move } from "../../types";
-import { formatName } from "../../utils/functions";
+import { typesColors } from "../../../utils/types-colors";
+import { Move } from "../../../types";
+import { formatName } from "../../../utils/functions";
 
 export default function SelectedMove({
   move,
   resetMoveSlot,
 }: {
   move: Move;
-  resetMoveSlot: (name: string) => void;
+  resetMoveSlot?: (name: string) => void;
 }) {
   return (
     <div className="flex items-center relative w-full h-8">
@@ -36,12 +36,14 @@ export default function SelectedMove({
       <div className="pl-9 pr-2 bg-pk-turquoise rounded-xl w-full flex items-center justify-between">
         {formatName(move.name)}
 
-        <X
-          className="cursor-pointer text-pk-white border-red-900 border-2 bg-red-500 rounded-full"
-          size={16}
-          onClick={() => resetMoveSlot(move.name)}
-          alt="Remove item"
-        />
+        {resetMoveSlot && (
+          <X
+            className="cursor-pointer text-pk-white border-red-900 border-2 bg-red-500 rounded-full"
+            size={16}
+            onClick={() => resetMoveSlot(move.name)}
+            alt="Remove item"
+          />
+        )}
       </div>
     </div>
   );

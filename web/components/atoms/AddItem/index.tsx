@@ -7,7 +7,6 @@ import {
   SetStateAction,
   FormEvent,
 } from "react";
-import { ItemClient } from "pokenode-ts";
 
 import { BattleItem } from "../../../types";
 import { useAppSelector } from "../../../store/store";
@@ -54,24 +53,16 @@ export default function AddItem({
     }
   }
 
-  function searchItem(name: string): void {
+  async function searchItem(name: string) {
     const query = name.toLowerCase().replace(" ", "-");
 
-    (async () => {
-      const api = new ItemClient();
-
-      await api
-        .getItemByName(query)
-        .then((data) => {
-          setItem({
-            sprite: data.sprites.default,
-            name: data.name,
-          });
-        })
-        .catch((error) => console.error(error));
-
-      setIsRequesting(false);
-    })();
+    const heldItemData = await fetch(`http://localhost:3000/api/held-item?name=${query}`)
+    const heldItem = await heldItemData.json()
+    
+    setItem({
+      sprite: heldItem.sprite,
+      name: heldItem.name,
+    })
   }
 
   return (

@@ -1,9 +1,9 @@
 "use client";
 
 import AppProvider from "../../../components/organisms/provider";
-import TeamHeader from "../../../components/organisms/team-header";
-import TeamPokemons from "../../../components/organisms/team-pokemons";
+import TeamHeader from "../../../components/organisms/TeamHeader";
 import TeamPreloader from "../../../components/organisms/team-preloader";
+import TrainerPokemonList from "../../../components/organisms/TrainerPokemonList";
 
 const loadInitialData = async (teamId: string) => {
   const teamData = await fetch(`http://localhost:3333/teams/${teamId}`, {
@@ -29,7 +29,7 @@ export default async function PokemonTeam({ params }: { params: any}) {
       <AppProvider>
         <TeamHeader lockEditing={true} />
 
-        {/* <TeamPokemons /> */}
+        <TrainerPokemonList pokemonList={data.team.pokemon} />
       </AppProvider>
     </main>
   );

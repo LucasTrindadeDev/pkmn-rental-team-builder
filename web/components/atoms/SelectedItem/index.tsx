@@ -2,15 +2,15 @@ import { SetStateAction } from "react";
 import Image from "next/image";
 import { X } from "@phosphor-icons/react";
 
-import { BattleItem } from "../../types";
-import { formatName } from "../../utils/functions";
+import { BattleItem } from "../../../types";
+import { formatName } from "../../../utils/functions";
 
 export default function SelectedItem({
   item,
   setItem,
 }: {
   item: BattleItem;
-  setItem: (value: SetStateAction<BattleItem | undefined>) => void;
+  setItem?: (value: SetStateAction<BattleItem | undefined>) => void;
 }) {
   return (
     <div className="flex items-center gap-1 ml-[-10px] relative w-full h-10">
@@ -29,13 +29,15 @@ export default function SelectedItem({
 
       <div className="pl-11 pr-2 bg-pk-turquoise rounded-xl w-full flex items-center justify-between">
         <h4>{formatName(item.name)}</h4>
-
-        <X
-          className="cursor-pointer text-pk-white border-red-900 border-2 bg-red-500 rounded-full"
-          size={16}
-          onClick={() => setItem(undefined)}
-          alt="Remove item"
-        />
+        
+        {setItem && (
+          <X
+            className="cursor-pointer text-pk-white border-red-900 border-2 bg-red-500 rounded-full"
+            size={16}
+            onClick={() => setItem(undefined)}
+            alt="Remove item"
+          />
+        )}
       </div>
     </div>
   );

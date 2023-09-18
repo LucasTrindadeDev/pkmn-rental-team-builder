@@ -1,8 +1,8 @@
 "use client";
 
 import AppProvider from "../components/organisms/provider";
-import TeamHeader from "../components/organisms/team-header";
-import TeamPokemons from "../components/organisms/team-pokemons";
+import TeamHeader from "../components/organisms/TeamHeader";
+import TeamPokemons from "../components/organisms/TeamPokemons";
 import SaveTeam from "../components/atoms/save.team";
 import PokedexPreloader from "../components/organisms/pokedex-preloader";
 import BattleItemsPreloader from "../components/organisms/battle-items.preloader";

@@ -1,7 +1,7 @@
 "use client";
 
-import PokemonBox from "../molecules/pokemon-box";
-import { useAppSelector } from "../../store/store";
+import PokemonBox from "../../molecules/PokemonBox";
+import { useAppSelector } from "../../../store/store";
 
 export default function TeamPokemons() {
   const pokemonList = useAppSelector((state) => state.team.team.pokemon);

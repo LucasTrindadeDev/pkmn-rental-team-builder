@@ -4,19 +4,19 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { X } from "@phosphor-icons/react";
 
-import { Pokemon, BattleItem, Move } from "../../types";
-import TextInput from "../atoms/text-input";
-import PokemonTypes from "../atoms/pokemon-types";
-import AbilitySelect from "../atoms/AbilitySelect";
-import AddItem from "../atoms/AddItem";
-import AddMove from "../atoms/add-move";
-import SelectedMove from "../atoms/selected-move";
-import SelectedItem from "../atoms/selected-item";
-import { store } from "../../store/store";
+import { Pokemon, BattleItem, Move } from "../../../types";
+import TextInput from "../../atoms/text-input";
+import PokemonTypes from "../../atoms/PokemonTypes";
+import AbilitySelect from "../../atoms/AbilitySelect";
+import AddItem from "../../atoms/AddItem";
+import AddMove from "../../atoms/add-move";
+import SelectedMove from "../../atoms/SelectedMove";
+import SelectedItem from "../../atoms/SelectedItem";
+import { store } from "../../../store/store";
 import {
   removeTeamPokemon,
   updatePokemon,
-} from "../../store/features/teamSlice";
+} from "../../../store/features/teamSlice";
 
 export default function PokemonBox({
   pokemon,
