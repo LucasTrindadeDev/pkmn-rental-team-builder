@@ -5,11 +5,11 @@ import Image from "next/image";
 import { X } from "@phosphor-icons/react";
 
 import { Pokemon, BattleItem, Move } from "../../../types";
-import TextInput from "../../atoms/text-input";
+import TextInput from "../../atoms/TextInput";
 import PokemonTypes from "../../atoms/PokemonTypes";
 import AbilitySelect from "../../atoms/AbilitySelect";
 import AddItem from "../../atoms/AddItem";
-import AddMove from "../../atoms/add-move";
+import AddMove from "../../atoms/AddMove";
 import SelectedMove from "../../atoms/SelectedMove";
 import SelectedItem from "../../atoms/SelectedItem";
 import { store } from "../../../store/store";

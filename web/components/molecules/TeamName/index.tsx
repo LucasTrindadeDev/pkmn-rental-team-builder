@@ -1,6 +1,6 @@
 import { setTeamName } from "../../../store/features/teamSlice";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
-import TeamTextInput from "../../atoms/team-text-input";
+import TeamTextInput from "../../atoms/TeamTextInput";
 
 export default function TeamName({ lockEditing }: { lockEditing?: boolean}) {
   const dispatch = useAppDispatch();

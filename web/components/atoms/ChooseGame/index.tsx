@@ -1,10 +1,10 @@
 import Image from "next/image";
 
-import { useAppDispatch, useAppSelector } from "../../store/store";
+import { useAppDispatch, useAppSelector } from "../../../store/store";
 
-import NaranjaAcademyCrest from "../../public/naranja-academy-crest.png";
-import UvaAcademyCrest from "../../public/uva-academy-crest.png";
-import { setTrainerGame } from "../../store/features/teamSlice";
+import NaranjaAcademyCrest from "../../../public/naranja-academy-crest.png";
+import UvaAcademyCrest from "../../../public/uva-academy-crest.png";
+import { setTrainerGame } from "../../../store/features/teamSlice";
 
 export default function ChooseGame() {
   const dispatch = useAppDispatch();

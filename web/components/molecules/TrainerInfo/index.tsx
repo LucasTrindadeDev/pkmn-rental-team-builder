@@ -1,8 +1,8 @@
 import { setTrainerName } from "../../../store/features/teamSlice";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
 
-import ChooseGame from "../../atoms/choose-game";
-import TeamTextInput from "../../atoms/team-text-input";
+import ChooseGame from "../../atoms/ChooseGame";
+import TeamTextInput from "../../atoms/TeamTextInput";
 
 export default function TrainerInfo({ lockEditing }: { lockEditing?: boolean}) {
   const dispatch = useAppDispatch();

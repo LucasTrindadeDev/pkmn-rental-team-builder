@@ -3,10 +3,10 @@
 import AppProvider from "../components/organisms/provider";
 import TeamHeader from "../components/organisms/TeamHeader";
 import TeamPokemons from "../components/organisms/TeamPokemons";
-import SaveTeam from "../components/atoms/save.team";
+import SaveTeam from "../components/atoms/SaveTeam";
 import PokedexPreloader from "../components/organisms/pokedex-preloader";
-import BattleItemsPreloader from "../components/organisms/battle-items.preloader";
-import AddPokemon from "../components/atoms/add-pokemon";
+import BattleItemsPreloader from "../components/organisms/battle-items-preloader";
+import AddPokemon from "../components/atoms/AddPokemon";
 
 const loadInitialData = async () => {
   const pokedexData = await fetch("http://localhost:3000/api/pokedex", {

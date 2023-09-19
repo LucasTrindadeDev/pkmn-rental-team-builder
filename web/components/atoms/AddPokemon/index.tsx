@@ -3,16 +3,16 @@
 import { useState, useEffect } from "react";
 import { PokemonEntry } from "pokenode-ts";
 
-import { store, useAppSelector } from "../../store/store";
-import { setTeamPokemon } from "../../store/features/teamSlice";
+import { store, useAppSelector } from "../../../store/store";
+import { setTeamPokemon } from "../../../store/features/teamSlice";
 
-import { variants } from "../../utils/pokemon-variants";
-import Urshifu from "./pokemon-variants/urshifu";
-import Rotom from "./pokemon-variants/rotom";
-import Genies from "./pokemon-variants/genies";
-import RegionalForms from "./pokemon-variants/regional-forms";
-import Darmanitan from "./pokemon-variants/darmanitan";
-import Basculin from "./pokemon-variants/basculin";
+import { variants } from "../../../utils/pokemon-variants";
+import Urshifu from "../PokemonVariants/urshifu";
+import Rotom from "../PokemonVariants/rotom";
+import Genies from "../PokemonVariants/genies";
+import RegionalForms from "../PokemonVariants/regional-forms";
+import Darmanitan from "../PokemonVariants/darmanitan";
+import Basculin from "../PokemonVariants/basculin";
 
 export default function AddPokemon() {
   const [search, setSearch] = useState<string>("");

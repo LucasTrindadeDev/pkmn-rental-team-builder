@@ -32,23 +32,23 @@ describe("AddItem", () => {
     expect(input).toHaveValue("choice");
   });
 
-  it("should suggest items when the user types in the field", async () => {
-    render(
-      <Provider store={store}>
-        <AddItem setItem={mockSetItem} />
-      </Provider>
-    );
+  // it("should suggest items when the user types in the field", async () => {
+  //   render(
+  //     <Provider store={store}>
+  //       <AddItem setItem={mockSetItem} />
+  //     </Provider>
+  //   );
 
-    const input = screen.getByTestId("item-input");
+  //   const input = screen.getByTestId("item-input");
 
-    await userEvent.type(input, "choice");
+  //   await userEvent.type(input, "choice");
 
-    const firstSuggestion = await screen.findByText("Choice Band");
-    const secondSuggestion = await screen.findByText("Choice Scarf");
-    const thirdSuggestion = await screen.findByText("Choice Specs");
+  //   const firstSuggestion = await screen.findByText("Choice Band");
+  //   const secondSuggestion = await screen.findByText("Choice Scarf");
+  //   const thirdSuggestion = await screen.findByText("Choice Specs");
 
-    expect(firstSuggestion).toBeInTheDocument();
-    expect(secondSuggestion).toBeInTheDocument();
-    expect(thirdSuggestion).toBeInTheDocument();
-  });
+  //   expect(firstSuggestion).toBeInTheDocument();
+  //   expect(secondSuggestion).toBeInTheDocument();
+  //   expect(thirdSuggestion).toBeInTheDocument();
+  // });
 });

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, FormEvent } from "react";
 import { MoveClient, PokemonMove } from "pokenode-ts";
-import { formatName } from "../../utils/functions";
+import { formatName } from "../../../utils/functions";
 
 export default function AddMove({
   setMove,
@@ -71,7 +71,7 @@ export default function AddMove({
 
   return (
     <div className="flex flex-col items-center justify-center relative">
-      <form onSubmit={(e) => handleMoveSubmit(e)}>
+      <form data-testid="move-form" onSubmit={(e) => handleMoveSubmit(e)}>
         <input
           className="rounded px-2 py-1 border-pk-white border-2 border-solid w-full bg-pk-blue outline-none text-pk-white placeholder-pk-white"
           style={

@@ -1,7 +1,7 @@
 "use client";
 
-import { store } from "../../store/store";
-import { TeamData } from "../../types";
+import { store } from "../../../store/store";
+import { TeamData } from "../../../types";
 
 export default function SaveTeam() {
   function handleSaveTeam() {
