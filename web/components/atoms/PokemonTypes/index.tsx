@@ -42,8 +42,8 @@ export default function PokemonTypes({
               height={20}
               className="object-contain"
               src={`/type-icons/${type}.svg`}
-              alt={type}
-              title={type}
+              alt={capitalizeFirstChar(type)}
+              title={capitalizeFirstChar(type)}
             />
           </li>
         ))}
@@ -64,8 +64,8 @@ export default function PokemonTypes({
             height={20}
             className="object-contain"
             src={`/type-icons/${teratype}.svg`}
-            alt="Tera Type"
-            title="Tera Type"
+            alt="Tera type"
+            title="Tera type"
           />
         </li>
       </ul>

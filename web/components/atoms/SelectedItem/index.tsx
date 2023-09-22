@@ -36,6 +36,7 @@ export default function SelectedItem({
             size={16}
             onClick={() => setItem(undefined)}
             alt="Remove item"
+            data-testid="remove-item"
           />
         )}
       </div>
